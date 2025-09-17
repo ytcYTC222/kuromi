@@ -1,0 +1,265 @@
+/**app.wxss**/
+/* 导入库洛米主题 */
+@import "./styles/kuromi-theme.wxss";
+
+/* 基础样式 - 库洛米主题 */
+page {
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--kuromi-black);
+  background: var(--kuromi-gradient-5);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 库洛米主题背景装饰 */
+page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 0, 139, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(147, 112, 219, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 颜色变量 - 库洛米主题 */
+page {
+  --primary: var(--kuromi-primary);
+  --secondary: var(--kuromi-secondary);
+  --accent: var(--kuromi-pink);
+  --neutral: var(--kuromi-light);
+  --dark: var(--kuromi-black);
+  --light-gray: var(--kuromi-light);
+  --medium-gray: var(--kuromi-gray);
+  --dark-gray: var(--kuromi-gray);
+  --white: var(--kuromi-white);
+  --black: var(--kuromi-black);
+}
+
+/* 通用容器 */
+.container {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+/* 通用按钮样式 - 库洛米主题 */
+.primary-button {
+  background: var(--kuromi-gradient-1);
+  color: white;
+  font-weight: 600;
+  padding: 24rpx 64rpx;
+  border-radius: 50rpx;
+  display: inline-block;
+  box-shadow: var(--kuromi-shadow-medium);
+  border: none;
+  outline: none;
+  text-align: center;
+  line-height: normal;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.primary-button::after {
+  border: none;
+}
+
+.primary-button:active {
+  transform: translateY(4rpx);
+  box-shadow: var(--kuromi-shadow-soft);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 4rpx solid var(--kuromi-primary);
+  color: var(--kuromi-primary);
+  font-weight: 600;
+  padding: 20rpx 60rpx;
+  border-radius: 50rpx;
+  display: inline-block;
+  outline: none;
+  text-align: center;
+  line-height: normal;
+  transition: all 0.3s ease;
+}
+
+.secondary-button::after {
+  border: none;
+}
+
+.secondary-button:active {
+  background: var(--kuromi-primary);
+  color: white;
+  transform: translateY(2rpx);
+}
+
+/* 通用标题样式 - 库洛米主题 */
+.section-header {
+  text-align: center;
+  margin-bottom: 96rpx;
+  position: relative;
+}
+
+.section-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: var(--kuromi-primary);
+  position: relative;
+  margin-bottom: 24rpx;
+}
+
+.section-title::before {
+  content: '🎀';
+  position: absolute;
+  left: -60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36rpx;
+}
+
+.section-title::after {
+  content: '🎀';
+  position: absolute;
+  right: -60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36rpx;
+}
+
+.section-description {
+  color: var(--kuromi-purple);
+  max-width: 800rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+}
+
+/* 通用卡片样式 - 库洛米主题 */
+.card {
+  background: var(--kuromi-gradient-5);
+  border: 4rpx solid transparent;
+  border-radius: 40rpx;
+  overflow: hidden;
+  box-shadow: var(--kuromi-shadow-medium);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.card:active {
+  transform: translateY(-10rpx);
+  box-shadow: var(--kuromi-shadow-strong), var(--kuromi-glow-purple);
+}
+
+/* 通用评分星星 */
+.rating-stars {
+  display: flex;
+  color: #FBBF24;
+}
+
+/* 通用价格样式 - 库洛米主题 */
+.price {
+  color: var(--kuromi-secondary);
+  font-weight: bold;
+  font-size: 36rpx;
+  position: relative;
+}
+
+.price::before {
+  content: '💜';
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.price-old {
+  color: var(--kuromi-gray);
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 16rpx;
+}
+
+/* 库洛米主题动画 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* 通用布局 */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+/* 通用间距 */
+.mt-16 {
+  margin-top: 32rpx;
+}
+
+.mb-16 {
+  margin-bottom: 32rpx;
+}
+
+.py-32 {
+  padding-top: 64rpx;
+  padding-bottom: 64rpx;
+}
+
+/* 通用网格布局 */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32rpx;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32rpx;
+}
+
+/* 文本截断 */
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 文本截断2行 */
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,0 +1,95 @@
+<!-- 分类页面 -->
+<view class="page-container">
+  <!-- 分类标题 -->
+  <view class="category-header">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">库洛米分类</view>
+        <view class="section-description">浏览我们的全部库洛米分类，找到适合您家的理想库洛米</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类列表 -->
+  <view class="category-content">
+    <view class="container">
+      <!-- 加载状态 -->
+      <view wx:if="{{loading}}" class="loading-container">
+        <view class="loading-spinner"></view>
+        <view class="loading-text">加载中...</view>
+      </view>
+      
+      <!-- 错误状态 -->
+      <view wx:elif="{{error}}" class="error-container">
+        <view class="error-icon">⚠️</view>
+        <view class="error-text">{{error}}</view>
+        <button class="retry-btn" bindtap="retryLoad">重试</button>
+      </view>
+      
+      <!-- 正常内容 -->
+      <view wx:else>
+        <view class="category-tabs">
+          <view 
+            wx:for="{{categoryTabs}}" 
+            wx:key="id" 
+            class="category-tab {{currentTab === item.id ? 'active' : ''}}"
+            bindtap="switchTab"
+            data-tab="{{item.id}}"
+          >
+            {{item.name}}
+          </view>
+        </view>
+        
+        <view class="category-list">
+          <block wx:if="{{currentCategories.length > 0}}">
+            <block wx:for="{{currentCategories}}" wx:key="id">
+              <view class="category-item" bindtap="navigateToSubcategory" data-id="{{item.id}}">
+                <view class="category-image-container">
+                  <image src="{{item.image}}" class="category-image" mode="aspectFill" lazy-load="true" />
+                </view>
+                <view class="category-item-info">
+                  <view class="category-item-title">{{item.name}}</view>
+                  <view class="category-item-count">{{item.count}} 款产品</view>
+                </view>
+              </view>
+            </block>
+          </block>
+          <view wx:else class="empty-container">
+            <view class="empty-icon">📦</view>
+            <view class="empty-text">暂无分类数据</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门分类 -->
+  <view class="popular-categories" wx:if="{{!loading && !error}}">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">热门分类</view>
+        <view class="section-description">我们最受欢迎的家具分类</view>
+      </view>
+      
+      <view class="popular-grid" wx:if="{{popularCategories.length > 0}}">
+        <block wx:for="{{popularCategories}}" wx:key="id">
+          <view class="popular-card" bindtap="navigateToSubcategory" data-id="{{item.id}}">
+            <view class="popular-image-container">
+              <image src="{{item.image}}" class="popular-image" mode="aspectFill" lazy-load="true" />
+              <view class="popular-overlay"></view>
+              <view class="popular-info">
+                <view class="popular-title">{{item.name}}</view>
+                <view class="popular-count">{{item.count}} 款产品</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      
+      <view wx:else class="empty-container">
+        <view class="empty-icon">🔥</view>
+        <view class="empty-text">暂无热门分类</view>
+      </view>
+    </view>
+  </view>
+</view>

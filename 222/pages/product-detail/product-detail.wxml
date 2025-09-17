@@ -1,0 +1,242 @@
+<!-- 商品详情页 -->
+<scroll-view class="page-scroll" scroll-y="true" style="height: 100vh;">
+  <view class="page-container">
+    
+    <!-- 商品图片轮播 -->
+    <view class="product-gallery">
+      <swiper class="product-swiper" indicator-dots="{{productImages.length > 1}}" autoplay="false" circular="true">
+        <block wx:for="{{productImages}}" wx:key="index">
+          <swiper-item>
+            <image 
+              src="{{item}}" 
+              class="product-image" 
+              mode="aspectFill" 
+              bindtap="previewImages" 
+              data-current="{{item}}"
+              lazy-load="true" 
+            />
+          </swiper-item>
+        </block>
+      </swiper>
+      
+      <!-- 图片指示器 -->
+      <view class="image-indicator" wx:if="{{productImages.length > 1}}">
+        {{currentImageIndex + 1}} / {{productImages.length}}
+      </view>
+    </view>
+
+    <!-- 商品基本信息 -->
+    <!-- 产品信息主容器 -->
+    <view class="product-info">
+      <!-- 产品标题区域 -->
+      <view class="product-header">
+        <view class="title-container">
+          <view class="product-title">{{productDetail.title}}</view>
+          <view class="title-decoration"></view>
+        </view>
+        <view class="product-actions">
+          <!-- 收藏按钮 -->
+          <view class="action-item favorite-btn" bindtap="toggleFavorite">
+            <view class="action-icon">
+              <text class="{{productDetail.isFavorite ? 'icon-heart' : 'icon-heart-o'}}"></text>
+            </view>
+            <view class="action-label">收藏</view>
+          </view>
+          <!-- 分享按钮 -->
+          <button class="action-item share-btn" open-type="share">
+            <view class="action-icon">
+              <text class="icon-share"></text>
+            </view>
+            <view class="action-label">分享</view>
+          </button>
+        </view>
+      </view>
+      
+      <!-- 价格信息容器 -->
+      <view class="price-container">
+        <view class="price-main">
+          <view class="price-symbol">¥</view>
+          <view class="current-price">{{productDetail.currentPrice}}</view>
+          <view class="price-unit">起</view>
+        </view>
+        <view class="price-details">
+          <view class="original-price" wx:if="{{productDetail.originalPrice && productDetail.originalPrice > productDetail.currentPrice}}">
+            原价 ¥{{productDetail.originalPrice}}
+          </view>
+          <view class="discount-badge" wx:if="{{productDetail.discountText}}">
+            <view class="badge-icon">🔥</view>
+            <view class="badge-text">{{productDetail.discountText}}</view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 评分和销量信息 -->
+      <view class="stats-container">
+        <!-- 评分区域 -->
+        <view class="rating-container">
+          <view class="rating-content">
+            <view class="rating-stars">
+              <block wx:for="{{5}}" wx:key="*this" wx:for-item="star">
+                <text class="star-icon {{star < productDetail.rating ? 'star-filled' : (star === Math.floor(productDetail.rating) && productDetail.rating % 1 !== 0 ? 'star-half' : 'star-empty')}}"></text>
+              </block>
+            </view>
+            <view class="rating-info">
+              <view class="rating-score">{{productDetail.rating}}</view>
+              <view class="rating-count">({{productDetail.ratingCount}}条评价)</view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 销量区域 -->
+        <view class="sales-container">
+          <view class="sales-content">
+            <view class="sales-icon">📈</view>
+            <view class="sales-info">
+              <view class="sales-number">{{productDetail.salesCount || 0}}</view>
+              <view class="sales-label">件已售</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品规格选择 -->
+    <view class="spec-section" wx:if="{{productDetail.specifications && productDetail.specifications.length > 0}}">
+      <view class="section-title">选择规格</view>
+      <block wx:for="{{productDetail.specifications}}" wx:key="name" wx:for-item="spec">
+        <view class="spec-group">
+          <view class="spec-name">{{spec.name}}</view>
+          <view class="spec-options">
+            <block wx:for="{{spec.options}}" wx:key="value" wx:for-item="option">
+              <view 
+                class="spec-option {{selectedSpecs[spec.name] === option.value ? 'selected' : ''}}" 
+                bindtap="selectSpec" 
+                data-spec-name="{{spec.name}}" 
+                data-spec-value="{{option.value}}"
+              >
+                {{option.label}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 数量选择 -->
+    <view class="quantity-section">
+      <view class="section-title">购买数量</view>
+      <view class="quantity-selector">
+        <view class="quantity-btn" bindtap="decreaseQuantity">
+          <text class="icon-minus"></text>
+        </view>
+        <input class="quantity-input" type="number" value="{{quantity}}" bindinput="onQuantityInput" />
+        <view class="quantity-btn" bindtap="increaseQuantity">
+          <text class="icon-plus"></text>
+        </view>
+      </view>
+      <view class="stock-info">库存{{productDetail.stock || 0}}件</view>
+    </view>
+
+
+
+    <!-- 商品详情描述 -->
+    <view class="description-section">
+      <view class="section-title">商品详情</view>
+      <view class="description-content">
+        <text class="description-text">{{productDetail.description}}</text>
+        
+        <!-- 商品详情图片 -->
+        <view class="detail-images" wx:if="{{productDetail.detailImages && productDetail.detailImages.length > 0}}">
+          <block wx:for="{{productDetail.detailImages}}" wx:key="index">
+            <image 
+              src="{{item}}" 
+              class="detail-image" 
+              mode="widthFix" 
+              lazy-load="true"
+              bindtap="previewDetailImages"
+              data-current="{{item}}"
+            />
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品参数 -->
+    <view class="params-section" wx:if="{{productDetail.parameters && productDetail.parameters.length > 0}}">
+      <view class="section-title">商品参数</view>
+      <view class="params-list">
+        <block wx:for="{{productDetail.parameters}}" wx:key="name">
+          <view class="param-item">
+            <view class="param-name">{{item.name}}</view>
+            <view class="param-value">{{item.value}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 用户评价 -->
+    <view class="reviews-section" wx:if="{{productDetail.reviews && productDetail.reviews.length > 0}}">
+      <view class="section-title">用户评价</view>
+      <view class="reviews-list">
+        <block wx:for="{{productDetail.reviews}}" wx:key="id" wx:for-item="review">
+          <view class="review-item">
+            <view class="review-header">
+              <view class="reviewer-info">
+                <image src="{{review.avatar || '/img/default-avatar.png'}}" class="reviewer-avatar" />
+                <view class="reviewer-name">{{review.username}}</view>
+              </view>
+              <view class="review-rating">
+                <block wx:for="{{5}}" wx:key="*this" wx:for-item="star">
+                  <text class="{{star < review.rating ? 'icon-star' : 'icon-star-o'}}"></text>
+                </block>
+              </view>
+            </view>
+            <view class="review-content">{{review.content}}</view>
+            <view class="review-time">{{review.createTime}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 底部占位，避免被底部操作栏遮挡 -->
+    <view class="bottom-placeholder"></view>
+  </view>
+</scroll-view>
+
+<!-- 底部操作栏 -->
+<view class="bottom-actions">
+  <view class="action-group">
+    <!-- 客服按钮 -->
+    <button class="action-item" open-type="contact">
+      <text class="icon-service"></text>
+      <text class="action-text">客服</text>
+    </button>
+    
+    <!-- 购物车按钮 -->
+    <!-- <navigator url="/pages/cart/cart" class="action-item">
+      <text class="icon-shopping-cart"></text>
+      <text class="action-text">购物车</text>
+      <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+    </navigator> -->
+  </view>
+  
+  <view class="purchase-group-fixed">
+    <!-- 加入购物车按钮 -->
+    <button class="add-cart-btn-fixed" bindtap="addToCart">
+      <text class="icon-shopping-cart"></text>
+      加入购物车
+    </button>
+    
+    <!-- 立即购买按钮 -->
+    <button class="buy-now-btn-fixed" bindtap="buyNow">
+      <text class="icon-flash"></text>
+      立即购买
+    </button>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-container" wx:if="{{loading}}">
+  <view class="loading-spinner"></view>
+  <text class="loading-text">加载中...</text>
+</view>

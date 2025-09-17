@@ -1,0 +1,137 @@
+<!-- 登录注册页面 -->
+<view class="login-container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <view class="logo">
+      <text class="logo-text">现代家居</text>
+    </view>
+    <view class="subtitle">欢迎来到现代家居，开启您的品质生活</view>
+  </view>
+
+  <!-- 切换标签 -->
+  <view class="tab-container">
+    <view class="tab-item {{currentTab === 'login' ? 'active' : ''}}" bindtap="switchTab" data-tab="login">
+      登录
+    </view>
+    <view class="tab-item {{currentTab === 'register' ? 'active' : ''}}" bindtap="switchTab" data-tab="register">
+      注册
+    </view>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="form-container" wx:if="{{currentTab === 'login'}}">
+    <form bindsubmit="onLogin">
+      <view class="form-group">
+        <view class="input-label">手机号</view>
+        <input 
+          class="form-input" 
+          type="number" 
+          placeholder="请输入手机号" 
+          name="phone"
+          value="{{loginForm.phone}}"
+          bindinput="onLoginInput"
+          data-field="phone"
+        />
+      </view>
+      
+      <view class="form-group">
+        <view class="input-label">密码</view>
+        <input 
+          class="form-input" 
+          type="password" 
+          placeholder="请输入密码" 
+          name="password"
+          value="{{loginForm.password}}"
+          bindinput="onLoginInput"
+          data-field="password"
+        />
+      </view>
+      
+      <button class="submit-btn" form-type="submit" loading="{{loginLoading}}">
+        {{loginLoading ? '登录中...' : '登录'}}
+      </button>
+    </form>
+    
+    <view class="form-footer">
+      <view class="forgot-password" bindtap="forgotPassword">忘记密码？</view>
+    </view>
+  </view>
+
+  <!-- 注册表单 -->
+  <view class="form-container" wx:if="{{currentTab === 'register'}}">
+    <form bindsubmit="onRegister">
+      <view class="form-group">
+        <view class="input-label">昵称</view>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入昵称" 
+          name="nickname"
+          value="{{registerForm.nickname}}"
+          bindinput="onRegisterInput"
+          data-field="nickname"
+        />
+      </view>
+      
+      <view class="form-group">
+        <view class="input-label">手机号</view>
+        <input 
+          class="form-input" 
+          type="number" 
+          placeholder="请输入手机号" 
+          name="phone"
+          value="{{registerForm.phone}}"
+          bindinput="onRegisterInput"
+          data-field="phone"
+        />
+      </view>
+      
+      <view class="form-group">
+        <view class="input-label">邮箱</view>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入邮箱" 
+          name="email"
+          value="{{registerForm.email}}"
+          bindinput="onRegisterInput"
+          data-field="email"
+        />
+      </view>
+      
+      <view class="form-group">
+        <view class="input-label">密码</view>
+        <input 
+          class="form-input" 
+          type="password" 
+          placeholder="请输入密码（6-20位）" 
+          name="password"
+          value="{{registerForm.password}}"
+          bindinput="onRegisterInput"
+          data-field="password"
+        />
+      </view>
+      
+      <view class="form-group">
+        <view class="input-label">确认密码</view>
+        <input 
+          class="form-input" 
+          type="password" 
+          placeholder="请再次输入密码" 
+          name="confirmPassword"
+          value="{{registerForm.confirmPassword}}"
+          bindinput="onRegisterInput"
+          data-field="confirmPassword"
+        />
+      </view>
+      
+
+      
+      <button class="submit-btn" form-type="submit" loading="{{registerLoading}}">
+        {{registerLoading ? '注册中...' : '注册'}}
+      </button>
+    </form>
+  </view>
+
+
+</view>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品API测试页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .button { padding: 10px 20px; margin: 10px 0; background: #409EFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .button:hover { background: #337ecc; }
+        .result { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 4px; white-space: pre-wrap; }
+        .error { background: #fef0f0; color: #f56c6c; }
+        .success { background: #f0f9ff; color: #67c23a; }
+        .info { background: #f4f4f5; color: #909399; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ 商品API测试工具</h1>
+        
+        <div>
+            <h3>1. 测试后端API连接</h3>
+            <button class="button" onclick="testBackendAPI()">测试后端API (直连)</button>
+            <div id="backendResult" class="result info">点击按钮测试后端API连接...</div>
+        </div>
+
+        <div>
+            <h3>2. 测试前端代理API</h3>
+            <button class="button" onclick="testProxyAPI()">测试前端代理API</button>
+            <div id="proxyResult" class="result info">点击按钮测试前端代理...</div>
+        </div>
+
+        <div>
+            <h3>3. 测试分页参数</h3>
+            <button class="button" onclick="testPagination()">测试分页参数</button>
+            <div id="paginationResult" class="result info">点击按钮测试分页参数...</div>
+        </div>
+
+        <div>
+            <h3>4. 查看网络请求详情</h3>
+            <p class="info">请打开浏览器开发者工具 (F12) → Network 标签页，然后点击上面的按钮查看详细的网络请求信息。</p>
+        </div>
+    </div>
+
+    <script>
+        async function testBackendAPI() {
+            const resultDiv = document.getElementById('backendResult');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '正在测试后端API连接...';
+            
+            try {
+                const response = await fetch('http://localhost:8080/api/products?page=1&size=5', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ 后端API连接成功！\n\n响应数据：\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ 后端API连接失败：\n${error.message}\n\n可能的原因：\n1. 后端服务未启动\n2. 端口8080被占用\n3. CORS跨域问题`;
+            }
+        }
+
+        async function testProxyAPI() {
+            const resultDiv = document.getElementById('proxyResult');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '正在测试前端代理API...';
+            
+            try {
+                const response = await fetch('/api/products?page=1&size=5', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ 前端代理API连接成功！\n\n响应数据：\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ 前端代理API连接失败：\n${error.message}\n\n可能的原因：\n1. Vite代理配置问题\n2. 前端服务未启动\n3. 代理目标地址错误`;
+            }
+        }
+
+        async function testPagination() {
+            const resultDiv = document.getElementById('paginationResult');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '正在测试不同分页参数...';
+            
+            const testCases = [
+                { page: 1, size: 10, desc: '第1页，每页10条' },
+                { page: 2, size: 5, desc: '第2页，每页5条' },
+                { pageNum: 1, pageSize: 10, desc: '使用pageNum/pageSize参数' }
+            ];
+            
+            let results = [];
+            
+            for (const testCase of testCases) {
+                try {
+                    const params = new URLSearchParams(testCase);
+                    const response = await fetch(`/api/products?${params}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        results.push(`✅ ${testCase.desc}: 成功 (总数: ${data.data?.total || 'N/A'})`);
+                    } else {
+                        results.push(`❌ ${testCase.desc}: HTTP ${response.status}`);
+                    }
+                } catch (error) {
+                    results.push(`❌ ${testCase.desc}: ${error.message}`);
+                }
+            }
+            
+            resultDiv.className = 'result info';
+            resultDiv.textContent = `分页参数测试结果：\n\n${results.join('\n')}`;
+        }
+
+        // 页面加载时显示当前环境信息
+        window.onload = function() {
+            console.log('🚀 商品API测试页面已加载');
+            console.log('📍 当前地址:', window.location.href);
+            console.log('🌐 用户代理:', navigator.userAgent);
+        };
+    </script>
+</body>
+</html>

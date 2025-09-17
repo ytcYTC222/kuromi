@@ -1,0 +1,84 @@
+// SCSS变量文件 - 少女心黄色系主题
+
+// 主题色彩 - 柔和黄色系
+$primary-color: #ffd93d; // 主黄色
+$success-color: #ffeb3b; // 成功色 - 明亮黄
+$warning-color: #ffc107; // 警告色 - 橙黄色
+$danger-color: #ff6b9d; // 危险色 - 粉红色
+$info-color: #ffe082; // 信息色 - 浅黄色
+
+// 少女心辅助色彩
+$primary-light: #fff9c4; // 极浅黄
+$success-light: #fffde7; // 极浅明黄
+$warning-light: #fff8e1; // 极浅橙黄
+$danger-light: #fce4ec; // 极浅粉
+$info-light: #fff3e0; // 极浅暖黄
+
+// 少女心特色色彩
+$cute-pink: #ffb3d9; // 可爱粉
+$cute-peach: #ffcc99; // 蜜桃色
+$cute-lavender: #e6ccff; // 薰衣草紫
+$cute-mint: #ccffcc; // 薄荷绿
+
+// 文字颜色 - 温暖色调
+$text-primary: #5d4037; // 温暖棕色
+$text-regular: #8d6e63; // 中等棕色
+$text-secondary: #a1887f; // 浅棕色
+$text-placeholder: #d7ccc8; // 极浅棕色
+
+// 边框颜色 - 柔和黄色系
+$border-base: #fff176; // 浅黄边框
+$border-light: #fff59d; // 更浅黄边框
+$border-lighter: #fff9c4; // 极浅黄边框
+$border-extra-light: #fffde7; // 最浅黄边框
+
+// 背景色 - 温暖少女心
+$bg-color: #fffef7; // 温暖白色
+$bg-color-page: #fff8e1; // 温暖页面背景
+$bg-color-light: #fffde7; // 浅色背景
+
+// 布局尺寸
+$header-height: 60px;
+$sidebar-width: 220px;
+$sidebar-collapsed-width: 64px;
+
+// 间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 圆角 - 更加柔和
+$border-radius-base: 12px;
+$border-radius-small: 8px;
+$border-radius-large: 20px;
+$border-radius-round: 50px; // 圆形按钮
+
+// 阴影 - 柔和少女心
+$box-shadow-base: 0 4px 12px rgba(255, 217, 61, 0.15), 0 2px 6px rgba(255, 179, 217, 0.1);
+$box-shadow-dark: 0 6px 16px rgba(255, 217, 61, 0.2), 0 3px 8px rgba(255, 179, 217, 0.15);
+$box-shadow-light: 0 2px 8px rgba(255, 235, 59, 0.1), 0 1px 4px rgba(255, 204, 153, 0.08);
+$box-shadow-cute: 0 8px 24px rgba(255, 179, 217, 0.2), 0 4px 12px rgba(255, 217, 61, 0.15); // 特别可爱的阴影
+
+// 字体大小
+$font-size-extra-large: 20px;
+$font-size-large: 18px;
+$font-size-medium: 16px;
+$font-size-base: 14px;
+$font-size-small: 13px;
+$font-size-extra-small: 12px;
+
+// 字体粗细
+$font-weight-primary: 500;
+$font-weight-secondary: 400;
+
+// 动画时间
+$transition-base: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition-fade: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+$transition-md-fade: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+// Z-index层级
+$z-index-normal: 1;
+$z-index-top: 1000;
+$z-index-popper: 2000;

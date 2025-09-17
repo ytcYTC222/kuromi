@@ -1,0 +1,955 @@
+/* 库洛米主题样式文件 - 现代化设计规范 */
+/* Kuromi Theme for WeChat Mini Program - Modern Design System */
+
+/* 库洛米主题配色变量 - 优化配色系统 */
+page {
+  /* 主要颜色 - 增强对比度和可读性 */
+  --kuromi-primary: #8B008B;     /* 深紫色 */
+  --kuromi-secondary: #FF69B4;   /* 热粉色 */
+  --kuromi-accent: #000000;      /* 黑色 */
+  --kuromi-light: #F8F0FF;       /* 淡紫色 - 更柔和 */
+  --kuromi-dark: #4B0082;        /* 靛紫色 */
+  --kuromi-white: #FFFFFF;       /* 白色 */
+  --kuromi-gray: #6B7280;        /* 灰色 - 现代化 */
+  --kuromi-pink: #FFB6C1;        /* 浅粉色 */
+  --kuromi-purple: #9370DB;      /* 中紫色 */
+  --kuromi-black: #1F2937;       /* 深灰黑 - 更柔和 */
+  
+  /* 语义化颜色 */
+  --kuromi-success: #10B981;     /* 成功色 */
+  --kuromi-warning: #F59E0B;     /* 警告色 */
+  --kuromi-error: #EF4444;       /* 错误色 */
+  --kuromi-info: #3B82F6;        /* 信息色 */
+  
+  /* 中性色阶 */
+  --kuromi-gray-50: #F9FAFB;
+  --kuromi-gray-100: #F3F4F6;
+  --kuromi-gray-200: #E5E7EB;
+  --kuromi-gray-300: #D1D5DB;
+  --kuromi-gray-400: #9CA3AF;
+  --kuromi-gray-500: #6B7280;
+  --kuromi-gray-600: #4B5563;
+  --kuromi-gray-700: #374151;
+  --kuromi-gray-800: #1F2937;
+  --kuromi-gray-900: #111827;
+  
+  /* 间距系统 - 8px 基准网格 */
+  --kuromi-space-1: 8rpx;    /* 4px */
+  --kuromi-space-2: 16rpx;   /* 8px */
+  --kuromi-space-3: 24rpx;   /* 12px */
+  --kuromi-space-4: 32rpx;   /* 16px */
+  --kuromi-space-5: 40rpx;   /* 20px */
+  --kuromi-space-6: 48rpx;   /* 24px */
+  --kuromi-space-8: 64rpx;   /* 32px */
+  --kuromi-space-10: 80rpx;  /* 40px */
+  --kuromi-space-12: 96rpx;  /* 48px */
+  --kuromi-space-16: 128rpx; /* 64px */
+  --kuromi-space-20: 160rpx; /* 80px */
+  --kuromi-space-24: 192rpx; /* 96px */
+  
+  /* 字体系统 */
+  --kuromi-text-xs: 20rpx;   /* 10px */
+  --kuromi-text-sm: 24rpx;   /* 12px */
+  --kuromi-text-base: 28rpx; /* 14px */
+  --kuromi-text-lg: 32rpx;   /* 16px */
+  --kuromi-text-xl: 36rpx;   /* 18px */
+  --kuromi-text-2xl: 48rpx;  /* 24px */
+  --kuromi-text-3xl: 60rpx;  /* 30px */
+  --kuromi-text-4xl: 72rpx;  /* 36px */
+  
+  /* 行高系统 */
+  --kuromi-leading-tight: 1.25;
+  --kuromi-leading-normal: 1.5;
+  --kuromi-leading-relaxed: 1.75;
+  
+  /* 圆角系统 */
+  --kuromi-radius-sm: 8rpx;
+  --kuromi-radius-md: 16rpx;
+  --kuromi-radius-lg: 24rpx;
+  --kuromi-radius-xl: 32rpx;
+  --kuromi-radius-2xl: 40rpx;
+  --kuromi-radius-full: 9999rpx;
+  
+  /* 渐变色彩 - 优化渐变效果 */
+  --kuromi-gradient-1: linear-gradient(135deg, #8B008B 0%, #FF69B4 50%, #9370DB 100%);
+  --kuromi-gradient-2: linear-gradient(45deg, #4B0082 0%, #8B008B 50%, #FF1493 100%);
+  --kuromi-gradient-3: linear-gradient(90deg, #000000 0%, #4B0082 50%, #8B008B 100%);
+  --kuromi-gradient-4: radial-gradient(circle, #FF69B4 0%, #8B008B 70%, #000000 100%);
+  --kuromi-gradient-5: linear-gradient(180deg, #F8F0FF 0%, #FFB6C1 50%, #FF69B4 100%);
+  --kuromi-gradient-soft: linear-gradient(135deg, rgba(139, 0, 139, 0.1) 0%, rgba(255, 105, 180, 0.1) 100%);
+  
+  /* 阴影系统 - 现代化层次感 */
+  --kuromi-shadow-xs: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  --kuromi-shadow-sm: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  --kuromi-shadow-md: 0 8rpx 24rpx rgba(0, 0, 0, 0.12);
+  --kuromi-shadow-lg: 0 16rpx 40rpx rgba(0, 0, 0, 0.15);
+  --kuromi-shadow-xl: 0 24rpx 60rpx rgba(0, 0, 0, 0.2);
+  --kuromi-shadow-2xl: 0 40rpx 80rpx rgba(0, 0, 0, 0.25);
+  
+  /* 主题阴影 */
+  --kuromi-shadow-soft: 0 8rpx 30rpx rgba(139, 0, 139, 0.15);
+  --kuromi-shadow-medium: 0 16rpx 50rpx rgba(139, 0, 139, 0.2);
+  --kuromi-shadow-strong: 0 24rpx 70rpx rgba(139, 0, 139, 0.25);
+  --kuromi-shadow-glow: 0 0 40rpx rgba(255, 105, 180, 0.4);
+  --kuromi-shadow-dark: 0 12rpx 40rpx rgba(0, 0, 0, 0.2);
+  
+  /* 内阴影 */
+  --kuromi-shadow-inner: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  --kuromi-shadow-inner-lg: inset 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+  
+  /* 发光效果 */
+  --kuromi-glow-pink: 0 0 30rpx rgba(255, 105, 180, 0.6);
+  --kuromi-glow-purple: 0 0 30rpx rgba(139, 0, 139, 0.6);
+  --kuromi-glow-white: 0 0 20rpx rgba(255, 255, 255, 0.8);
+  --kuromi-glow-magic: 0 0 50rpx rgba(147, 112, 219, 0.7);
+  
+  /* 通用设计系统变量 - 兼容性映射 */
+  --color-white: var(--kuromi-white);
+  --color-primary: var(--kuromi-primary);
+  --color-gray-50: var(--kuromi-gray-50);
+  --color-gray-100: var(--kuromi-gray-100);
+  --color-gray-200: var(--kuromi-gray-200);
+  --color-gray-300: var(--kuromi-gray-300);
+  --color-gray-400: var(--kuromi-gray-400);
+  --color-gray-500: var(--kuromi-gray-500);
+  --color-gray-600: var(--kuromi-gray-600);
+  --color-gray-700: var(--kuromi-gray-700);
+  --color-gray-800: var(--kuromi-gray-800);
+  --color-gray-900: var(--kuromi-gray-900);
+  --color-red-50: #FEF2F2;
+  --color-red-200: #FECACA;
+  --color-red-300: #FCA5A5;
+  --color-red-500: var(--kuromi-error);
+  --color-blue-50: #EFF6FF;
+  --color-green-500: var(--kuromi-success);
+  
+  /* 间距系统映射 */
+  --spacing-1: var(--kuromi-space-1);
+  --spacing-2: var(--kuromi-space-2);
+  --spacing-3: var(--kuromi-space-3);
+  --spacing-4: var(--kuromi-space-4);
+  --spacing-5: var(--kuromi-space-5);
+  --spacing-6: var(--kuromi-space-6);
+  --spacing-8: var(--kuromi-space-8);
+  --spacing-10: var(--kuromi-space-10);
+  --spacing-12: var(--kuromi-space-12);
+  --spacing-15: 120rpx;
+  --spacing-20: var(--kuromi-space-20);
+  --spacing-25: 200rpx;
+  --spacing-30: 240rpx;
+  --spacing-40: 320rpx;
+  --spacing-50: 400rpx;
+  
+  /* 字体系统映射 */
+  --text-xs: var(--kuromi-text-xs);
+  --text-sm: var(--kuromi-text-sm);
+  --text-base: var(--kuromi-text-base);
+  --text-lg: var(--kuromi-text-lg);
+  --text-xl: var(--kuromi-text-xl);
+  --text-2xl: var(--kuromi-text-2xl);
+  
+  /* 字重系统 */
+  --font-medium: 500;
+  --font-bold: 700;
+  
+  /* 圆角系统映射 */
+  --border-radius-sm: var(--kuromi-radius-sm);
+  --border-radius-md: var(--kuromi-radius-md);
+  --border-radius-lg: var(--kuromi-radius-lg);
+  --border-radius-xl: var(--kuromi-radius-xl);
+  --border-radius-2xl: var(--kuromi-radius-2xl);
+  --border-radius-full: var(--kuromi-radius-full);
+  
+  /* 阴影系统映射 */
+  --shadow-sm: var(--kuromi-shadow-sm);
+  --shadow-md: var(--kuromi-shadow-md);
+  --shadow-lg: var(--kuromi-shadow-lg);
+  --shadow-xl: var(--kuromi-shadow-xl);
+  --shadow-2xl: var(--kuromi-shadow-2xl);
+  
+  /* 过渡动画 */
+  --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 渐变背景映射 */
+  --kuromi-gradient-bg: var(--kuromi-gradient-5);
+  --kuromi-gradient-overlay: var(--kuromi-gradient-soft);
+  --kuromi-gradient-primary: var(--kuromi-gradient-1);
+  
+  /* 边框系统 - 现代化边框设计 */
+  /* 边框宽度 */
+  --kuromi-border-width-thin: 1rpx;
+  --kuromi-border-width-normal: 2rpx;
+  --kuromi-border-width-medium: 3rpx;
+  --kuromi-border-width-thick: 4rpx;
+  --kuromi-border-width-bold: 6rpx;
+  
+  /* 边框颜色 - 高对比度设计 */
+  --kuromi-border-primary: var(--kuromi-primary);
+  --kuromi-border-secondary: var(--kuromi-secondary);
+  --kuromi-border-accent: var(--kuromi-accent);
+  --kuromi-border-light: var(--kuromi-gray-200);
+  --kuromi-border-medium: var(--kuromi-gray-300);
+  --kuromi-border-dark: var(--kuromi-gray-600);
+  --kuromi-border-success: var(--kuromi-success);
+  --kuromi-border-warning: var(--kuromi-warning);
+  --kuromi-border-error: var(--kuromi-error);
+  --kuromi-border-info: var(--kuromi-info);
+  --kuromi-border-white: var(--kuromi-white);
+  --kuromi-border-transparent: transparent;
+  
+  /* 边框渐变色 */
+  --kuromi-border-gradient-1: linear-gradient(135deg, var(--kuromi-primary), var(--kuromi-secondary));
+  --kuromi-border-gradient-2: linear-gradient(45deg, var(--kuromi-secondary), var(--kuromi-purple));
+  --kuromi-border-gradient-3: linear-gradient(90deg, var(--kuromi-accent), var(--kuromi-primary));
+  
+  /* 边框样式组合 */
+  --kuromi-border-solid: var(--kuromi-border-width-normal) solid var(--kuromi-border-medium);
+  --kuromi-border-dashed: var(--kuromi-border-width-normal) dashed var(--kuromi-border-medium);
+  --kuromi-border-dotted: var(--kuromi-border-width-normal) dotted var(--kuromi-border-medium);
+  
+  /* 兼容性映射 */
+  --border-width-1: var(--kuromi-border-width-thin);
+  --border-width-2: var(--kuromi-border-width-normal);
+  --border-width-3: var(--kuromi-border-width-medium);
+  --border-width-4: var(--kuromi-border-width-thick);
+}
+
+/* 库洛米边框组件系统 - 现代化边框设计 */
+/* 基础边框组件 */
+.kuromi-border {
+  border: var(--kuromi-border-solid);
+  border-radius: var(--kuromi-radius-md);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 边框样式变体 */
+.kuromi-border-solid {
+  border: var(--kuromi-border-width-normal) solid var(--kuromi-border-medium);
+}
+
+.kuromi-border-dashed {
+  border: var(--kuromi-border-width-normal) dashed var(--kuromi-border-medium);
+}
+
+.kuromi-border-dotted {
+  border: var(--kuromi-border-width-normal) dotted var(--kuromi-border-medium);
+}
+
+/* 边框宽度变体 */
+.kuromi-border-thin {
+  border-width: var(--kuromi-border-width-thin);
+}
+
+.kuromi-border-normal {
+  border-width: var(--kuromi-border-width-normal);
+}
+
+.kuromi-border-medium {
+  border-width: var(--kuromi-border-width-medium);
+}
+
+.kuromi-border-thick {
+  border-width: var(--kuromi-border-width-thick);
+}
+
+.kuromi-border-bold {
+  border-width: var(--kuromi-border-width-bold);
+}
+
+/* 边框颜色变体 */
+.kuromi-border-primary {
+  border-color: var(--kuromi-border-primary);
+}
+
+.kuromi-border-secondary {
+  border-color: var(--kuromi-border-secondary);
+}
+
+.kuromi-border-accent {
+  border-color: var(--kuromi-border-accent);
+}
+
+.kuromi-border-light {
+  border-color: var(--kuromi-border-light);
+}
+
+.kuromi-border-dark {
+  border-color: var(--kuromi-border-dark);
+}
+
+.kuromi-border-success {
+  border-color: var(--kuromi-border-success);
+}
+
+.kuromi-border-warning {
+  border-color: var(--kuromi-border-warning);
+}
+
+.kuromi-border-error {
+  border-color: var(--kuromi-border-error);
+}
+
+.kuromi-border-info {
+  border-color: var(--kuromi-border-info);
+}
+
+.kuromi-border-white {
+  border-color: var(--kuromi-border-white);
+}
+
+.kuromi-border-transparent {
+  border-color: var(--kuromi-border-transparent);
+}
+
+/* 渐变边框组件 */
+.kuromi-border-gradient {
+  position: relative;
+  background: var(--kuromi-white);
+  border-radius: var(--kuromi-radius-md);
+  padding: var(--kuromi-space-4);
+}
+
+.kuromi-border-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--kuromi-border-gradient-1);
+  border-radius: inherit;
+  padding: var(--kuromi-border-width-normal);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}
+
+.kuromi-border-gradient-1::before {
+  background: var(--kuromi-border-gradient-1);
+}
+
+.kuromi-border-gradient-2::before {
+  background: var(--kuromi-border-gradient-2);
+}
+
+.kuromi-border-gradient-3::before {
+  background: var(--kuromi-border-gradient-3);
+}
+
+/* 交互状态边框 */
+.kuromi-border-interactive {
+  border: var(--kuromi-border-width-normal) solid var(--kuromi-border-light);
+  border-radius: var(--kuromi-radius-md);
+  transition: var(--transition-all);
+  cursor: pointer;
+}
+
+.kuromi-border-interactive:hover {
+  border-color: var(--kuromi-border-primary);
+  box-shadow: var(--kuromi-shadow-md), var(--kuromi-glow-pink);
+  transform: translateY(-2rpx);
+}
+
+.kuromi-border-interactive:focus {
+  border-color: var(--kuromi-border-primary);
+  box-shadow: var(--kuromi-shadow-lg), 0 0 0 6rpx rgba(139, 0, 139, 0.1);
+  outline: none;
+}
+
+.kuromi-border-interactive:active {
+  border-color: var(--kuromi-border-accent);
+  transform: translateY(0);
+  box-shadow: var(--kuromi-shadow-sm);
+}
+
+/* 发光边框效果 */
+.kuromi-border-glow {
+  border: var(--kuromi-border-width-normal) solid var(--kuromi-border-primary);
+  border-radius: var(--kuromi-radius-md);
+  box-shadow: var(--kuromi-glow-pink);
+  animation: kuromi-glow-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes kuromi-glow-pulse {
+  0% {
+    box-shadow: var(--kuromi-glow-pink);
+  }
+  100% {
+    box-shadow: var(--kuromi-glow-purple), var(--kuromi-shadow-lg);
+  }
+}
+
+/* 卡片边框组件 */
+.kuromi-card-border {
+  background: var(--kuromi-white);
+  border: var(--kuromi-border-width-thin) solid var(--kuromi-border-light);
+  border-radius: var(--kuromi-radius-lg);
+  box-shadow: var(--kuromi-shadow-sm);
+  padding: var(--kuromi-space-6);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.kuromi-card-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: var(--kuromi-gradient-1);
+}
+
+.kuromi-card-border:hover {
+  border-color: var(--kuromi-border-primary);
+  box-shadow: var(--kuromi-shadow-md);
+  transform: translateY(-4rpx);
+}
+
+/* 输入框边框组件 */
+.kuromi-input-border {
+  border: var(--kuromi-border-width-normal) solid var(--kuromi-border-light);
+  border-radius: var(--kuromi-radius-md);
+  padding: var(--kuromi-space-4) var(--kuromi-space-5);
+  transition: var(--transition-all);
+  background: var(--kuromi-white);
+}
+
+.kuromi-input-border:focus {
+  border-color: var(--kuromi-border-primary);
+  box-shadow: 0 0 0 6rpx rgba(139, 0, 139, 0.1);
+  outline: none;
+}
+
+.kuromi-input-border.error {
+  border-color: var(--kuromi-border-error);
+}
+
+.kuromi-input-border.success {
+  border-color: var(--kuromi-border-success);
+}
+
+.kuromi-input-border.warning {
+  border-color: var(--kuromi-border-warning);
+}
+
+/* 分割线边框 */
+.kuromi-divider {
+  border: none;
+  border-top: var(--kuromi-border-width-thin) solid var(--kuromi-border-light);
+  margin: var(--kuromi-space-6) 0;
+}
+
+.kuromi-divider-gradient {
+  border: none;
+  height: var(--kuromi-border-width-normal);
+  background: var(--kuromi-border-gradient-1);
+  margin: var(--kuromi-space-6) 0;
+  border-radius: var(--kuromi-radius-full);
+}
+
+/* 库洛米主题按钮系统 - 现代化设计 */
+.kuromi-btn {
+  background: var(--kuromi-gradient-1);
+  border: none;
+  border-radius: var(--kuromi-radius-full);
+  color: var(--kuromi-white);
+  font-size: var(--kuromi-text-base);
+  font-weight: 600;
+  line-height: var(--kuromi-leading-normal);
+  padding: var(--kuromi-space-4) var(--kuromi-space-8);
+  box-shadow: var(--kuromi-shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88rpx;
+  text-align: center;
+}
+
+.kuromi-btn::after {
+  border: none;
+}
+
+.kuromi-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kuromi-btn:hover::before {
+  opacity: 1;
+}
+
+.kuromi-btn:active {
+  transform: translateY(2rpx) scale(0.98);
+  box-shadow: var(--kuromi-shadow-sm);
+}
+
+/* 按钮尺寸变体 */
+.kuromi-btn-sm {
+  padding: var(--kuromi-space-2) var(--kuromi-space-4);
+  font-size: var(--kuromi-text-sm);
+  min-height: 64rpx;
+}
+
+.kuromi-btn-lg {
+  padding: var(--kuromi-space-5) var(--kuromi-space-10);
+  font-size: var(--kuromi-text-lg);
+  min-height: 112rpx;
+}
+
+/* 按钮样式变体 */
+.kuromi-btn-secondary {
+  background: var(--kuromi-gradient-2);
+}
+
+.kuromi-btn-dark {
+  background: var(--kuromi-gradient-3);
+}
+
+.kuromi-btn-outline {
+  background: transparent;
+  border: 2rpx solid var(--kuromi-primary);
+  color: var(--kuromi-primary);
+  box-shadow: var(--kuromi-shadow-sm);
+}
+
+.kuromi-btn-outline:active {
+  background: var(--kuromi-primary);
+  color: var(--kuromi-white);
+}
+
+.kuromi-btn-ghost {
+  background: rgba(139, 0, 139, 0.1);
+  border: none;
+  color: var(--kuromi-primary);
+  box-shadow: none;
+}
+
+.kuromi-btn-ghost:active {
+  background: rgba(139, 0, 139, 0.2);
+}
+
+/* 库洛米主题卡片系统 - 现代化设计 */
+.kuromi-card {
+  background: var(--kuromi-white);
+  border: 1rpx solid var(--kuromi-gray-200);
+  border-radius: var(--kuromi-radius-xl);
+  box-shadow: var(--kuromi-shadow-sm);
+  padding: var(--kuromi-space-6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10rpx);
+}
+
+.kuromi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: var(--kuromi-gradient-1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kuromi-card:hover {
+  transform: translateY(-4rpx);
+  box-shadow: var(--kuromi-shadow-lg);
+  border-color: var(--kuromi-gray-300);
+}
+
+.kuromi-card:hover::before {
+  opacity: 1;
+}
+
+.kuromi-card:active {
+  transform: translateY(-2rpx);
+  box-shadow: var(--kuromi-shadow-md);
+}
+
+/* 卡片变体 */
+.kuromi-card-elevated {
+  background: var(--kuromi-gradient-5);
+  border: none;
+  box-shadow: var(--kuromi-shadow-lg);
+}
+
+.kuromi-card-dark {
+  background: var(--kuromi-gray-800);
+  border-color: var(--kuromi-gray-700);
+  color: var(--kuromi-white);
+}
+
+.kuromi-card-magic {
+  background: var(--kuromi-gradient-4);
+  border: none;
+  color: var(--kuromi-white);
+}
+
+.kuromi-card-outline {
+  background: transparent;
+  border: 2rpx solid var(--kuromi-primary);
+  box-shadow: none;
+}
+
+/* 卡片尺寸 */
+.kuromi-card-sm {
+  padding: var(--kuromi-space-4);
+  border-radius: var(--kuromi-radius-lg);
+}
+
+.kuromi-card-lg {
+  padding: var(--kuromi-space-8);
+  border-radius: var(--kuromi-radius-2xl);
+
+  box-shadow: var(--kuromi-shadow-glow), var(--kuromi-glow-magic);
+}
+
+/* 库洛米主题输入框系统 - 现代化设计 */
+.kuromi-input {
+  background: var(--kuromi-white);
+  border: 2rpx solid var(--kuromi-gray-300);
+  border-radius: var(--kuromi-radius-lg);
+  color: var(--kuromi-gray-900);
+  font-size: var(--kuromi-text-base);
+  line-height: var(--kuromi-leading-normal);
+  padding: var(--kuromi-space-3) var(--kuromi-space-4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--kuromi-shadow-sm);
+  min-height: 88rpx;
+  display: flex;
+  align-items: center;
+}
+
+.kuromi-input:focus {
+  outline: none;
+  border-color: var(--kuromi-primary);
+  box-shadow: var(--kuromi-shadow-sm), 0 0 0 6rpx rgba(139, 0, 139, 0.1);
+  background: var(--kuromi-white);
+}
+
+.kuromi-input:hover {
+  border-color: var(--kuromi-gray-400);
+}
+
+.kuromi-input::placeholder {
+  color: var(--kuromi-gray-500);
+  opacity: 1;
+}
+
+.kuromi-input:disabled {
+  background: var(--kuromi-gray-100);
+  border-color: var(--kuromi-gray-200);
+  color: var(--kuromi-gray-400);
+  cursor: not-allowed;
+}
+
+/* 输入框尺寸变体 */
+.kuromi-input-sm {
+  padding: var(--kuromi-space-2) var(--kuromi-space-3);
+  font-size: var(--kuromi-text-sm);
+  min-height: 64rpx;
+  border-radius: var(--kuromi-radius-md);
+}
+
+.kuromi-input-lg {
+  padding: var(--kuromi-space-4) var(--kuromi-space-5);
+  font-size: var(--kuromi-text-lg);
+  min-height: 112rpx;
+  border-radius: var(--kuromi-radius-xl);
+}
+
+/* 输入框状态变体 */
+.kuromi-input-error {
+  border-color: var(--kuromi-error);
+  box-shadow: var(--kuromi-shadow-sm), 0 0 0 6rpx rgba(239, 68, 68, 0.1);
+}
+
+.kuromi-input-success {
+  border-color: var(--kuromi-success);
+  box-shadow: var(--kuromi-shadow-sm), 0 0 0 6rpx rgba(34, 197, 94, 0.1);
+}
+
+/* 库洛米主题标题系统 - 现代化设计 */
+.kuromi-title {
+  color: var(--kuromi-gray-900);
+  font-size: var(--kuromi-text-4xl);
+  font-weight: 700;
+  line-height: var(--kuromi-leading-tight);
+  text-align: center;
+  margin: var(--kuromi-space-8) 0 var(--kuromi-space-6) 0;
+  letter-spacing: -0.025em;
+  position: relative;
+}
+
+.kuromi-title-primary {
+  color: var(--kuromi-primary);
+  text-shadow: 2rpx 2rpx 8rpx rgba(139, 0, 139, 0.2);
+}
+
+.kuromi-title-gradient {
+  background: var(--kuromi-gradient-1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.kuromi-title::before {
+  content: '🎀';
+  position: absolute;
+  left: -60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--kuromi-text-2xl);
+  opacity: 0.8;
+}
+
+.kuromi-title::after {
+  content: '🎀';
+  position: absolute;
+  right: -60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--kuromi-text-2xl);
+  opacity: 0.8;
+}
+
+.kuromi-subtitle {
+  color: var(--kuromi-gray-700);
+  font-size: var(--kuromi-text-xl);
+  font-weight: 600;
+  line-height: var(--kuromi-leading-relaxed);
+  text-align: center;
+  margin: var(--kuromi-space-4) 0;
+}
+
+/* 标题尺寸变体 */
+.kuromi-title-sm {
+  font-size: var(--kuromi-text-2xl);
+  margin: var(--kuromi-space-4) 0 var(--kuromi-space-3) 0;
+}
+
+.kuromi-title-lg {
+  font-size: 80rpx;
+  margin: var(--kuromi-space-12) 0 var(--kuromi-space-8) 0;
+}
+
+.kuromi-title-xl {
+  font-size: 96rpx;
+  margin: var(--kuromi-space-16) 0 var(--kuromi-space-10) 0;
+}
+
+/* 库洛米主题背景 */
+.kuromi-bg {
+  background: var(--kuromi-gradient-5);
+  min-height: 100vh;
+  position: relative;
+}
+
+.kuromi-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 0, 139, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(147, 112, 219, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 库洛米主题装饰元素 */
+.kuromi-decoration {
+  position: relative;
+}
+
+.kuromi-decoration::before {
+  content: '✨';
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+  font-size: 28rpx;
+  animation: sparkle 2s ease-in-out infinite;
+  z-index: 10;
+}
+
+.kuromi-decoration::after {
+  content: '💖';
+  position: absolute;
+  bottom: -20rpx;
+  left: -20rpx;
+  font-size: 28rpx;
+  animation: float 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* 库洛米主题动画 */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: var(--kuromi-shadow-medium);
+  }
+  50% {
+    box-shadow: var(--kuromi-shadow-glow), var(--kuromi-glow-magic);
+  }
+}
+
+/* 库洛米主题图标 */
+.kuromi-icon {
+  color: var(--kuromi-primary);
+  font-size: 32rpx;
+}
+
+.kuromi-icon-heart::before {
+  content: '💜';
+}
+
+.kuromi-icon-star::before {
+  content: '⭐';
+}
+
+.kuromi-icon-bow::before {
+  content: '🎀';
+}
+
+.kuromi-icon-skull::before {
+  content: '💀';
+}
+
+/* 库洛米主题价格 */
+.kuromi-price {
+  color: var(--kuromi-secondary);
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.kuromi-price-old {
+  color: var(--kuromi-gray);
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+/* 库洛米主题标签 */
+.kuromi-tag {
+  background: var(--kuromi-gradient-1);
+  color: white;
+  font-size: 20rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+}
+
+.kuromi-tag-outline {
+  background: transparent;
+  border: 2rpx solid var(--kuromi-primary);
+  color: var(--kuromi-primary);
+}
+
+/* 库洛米主题分割线 */
+.kuromi-divider {
+  height: 2rpx;
+  background: var(--kuromi-gradient-1);
+  margin: 32rpx 0;
+  border-radius: 2rpx;
+}
+
+/* 库洛米主题加载动画 */
+.kuromi-loading {
+  width: 60rpx;
+  height: 60rpx;
+  border: 6rpx solid var(--kuromi-light);
+  border-top: 6rpx solid var(--kuromi-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 库洛米主题通用样式 */
+.kuromi-text-primary {
+  color: var(--kuromi-primary);
+}
+
+.kuromi-text-secondary {
+  color: var(--kuromi-secondary);
+}
+
+.kuromi-text-dark {
+  color: var(--kuromi-black);
+}
+
+.kuromi-text-light {
+  color: var(--kuromi-gray);
+}
+
+.kuromi-bg-primary {
+  background: var(--kuromi-primary);
+}
+
+.kuromi-bg-secondary {
+  background: var(--kuromi-secondary);
+}
+
+.kuromi-bg-gradient {
+  background: var(--kuromi-gradient-1);
+}
+
+.kuromi-border {
+  border: 2rpx solid var(--kuromi-primary);
+}
+
+.kuromi-border-radius {
+  border-radius: 20rpx;
+}
+
+.kuromi-shadow {
+  box-shadow: var(--kuromi-shadow-medium);
+}
+
+.kuromi-glow {
+  animation: glow 2s ease-in-out infinite;
+}

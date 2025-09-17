@@ -1,0 +1,892 @@
+// 全局样式文件
+@use 'sass:color';
+@import './variables.scss';
+// 导入少女心装饰样式
+@import './cute-decorations.scss';
+// 导入库洛米主题样式
+@import './kuromi-theme.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka One', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  background: linear-gradient(135deg, #fff8e1 0%, #fffde7 50%, #fff9c4 100%);
+  color: $text-primary !important;
+  line-height: 1.6;
+  position: relative;
+}
+
+// 确保所有文字颜色正确显示
+* {
+  color: inherit;
+}
+
+// 强制设置主要文字颜色
+.el-main, .el-container, .el-aside, .el-header {
+  color: $text-primary !important;
+}
+
+// 确保表格文字颜色
+.el-table {
+  color: $text-primary !important;
+  
+  * {
+    color: $text-primary !important;
+  }
+}
+
+// 少女心背景装饰
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 179, 217, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 235, 59, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 204, 153, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+// 滚动条样式 - 少女心
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $primary-light;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, $primary-color, $cute-pink);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, $warning-color, $danger-color);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+// 通用类
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+// 卡片样式 - 少女心
+.card {
+  background: linear-gradient(145deg, $bg-color 0%, $bg-color-light 100%);
+  border-radius: $border-radius-large;
+  box-shadow: $box-shadow-cute;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, $primary-color, $cute-pink, $cute-peach, $primary-color);
+    border-radius: $border-radius-large;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-dark;
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// 按钮样式增强 - 少女心
+.el-button {
+  border-radius: $border-radius-base;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 移除过度的样式覆盖，保持Element Plus默认行为
+
+.el-button--primary {
+  background: linear-gradient(45deg, $primary-color, color.adjust($primary-color, $lightness: 10%)) !important;
+  border-color: $primary-color;
+  color: #333 !important;
+  
+  &:hover {
+    background: linear-gradient(45deg, color.adjust($primary-color, $lightness: 5%), color.adjust($primary-color, $lightness: 15%)) !important;
+    color: #333 !important;
+  }
+}
+
+.el-button--success {
+  background: linear-gradient(45deg, $success-color, color.adjust($success-color, $lightness: 10%));
+  border-color: $success-color;
+  color: #333 !important;
+  
+  &:hover {
+    background: linear-gradient(45deg, color.adjust($success-color, $lightness: 5%), color.adjust($success-color, $lightness: 15%));
+    color: #333 !important;
+  }
+}
+
+.el-button--warning {
+  background: linear-gradient(45deg, $warning-color, color.adjust($warning-color, $lightness: 10%));
+  border-color: $warning-color;
+  color: #333 !important;
+  
+  &:hover {
+    background: linear-gradient(45deg, color.adjust($warning-color, $lightness: 5%), color.adjust($warning-color, $lightness: 15%));
+    color: #333 !important;
+  }
+}
+
+.el-button--danger {
+  background: linear-gradient(45deg, $danger-color, color.adjust($danger-color, $lightness: 10%));
+  border-color: $danger-color;
+  color: white !important;
+  
+  &:hover {
+    background: linear-gradient(45deg, color.adjust($danger-color, $lightness: 5%), color.adjust($danger-color, $lightness: 15%));
+    color: white !important;
+  }
+}
+
+// 可爱圆形按钮
+.el-button.is-round {
+  border-radius: $border-radius-round;
+  padding: 12px 24px;
+}
+
+// 特殊可爱按钮样式
+.cute-button {
+  background: linear-gradient(45deg, $cute-pink, $cute-peach);
+  border: none;
+  color: #333 !important;
+  border-radius: $border-radius-round;
+  padding: 12px 24px;
+  font-weight: 600;
+  box-shadow: $box-shadow-cute;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: $box-shadow-dark;
+    color: #333 !important;
+  }
+}
+
+// 表格样式 - 少女心
+.el-table {
+  border-radius: $border-radius-large !important;
+  overflow: visible;
+  box-shadow: $box-shadow-light !important;
+  background: $bg-color !important;
+  
+  // 覆盖所有可能的白色背景
+  *,
+  *::before,
+  *::after {
+    background-color: inherit !important;
+  }
+  
+  // 强制覆盖Element Plus默认样式
+  .el-table__row {
+    background-color: $bg-color !important;
+    overflow: visible !important;
+  }
+  
+  .el-table__cell,
+  .el-table__expanded-cell {
+    background-color: $bg-color !important;
+    overflow: visible !important;
+  }
+  
+  // 表格容器
+  .el-table__fixed,
+  .el-table__fixed-right {
+    background: $bg-color !important;
+    overflow: visible !important;
+  }
+  
+  // 固定列单元格
+  .el-table__fixed-right .el-table__cell,
+  .el-table__fixed .el-table__cell {
+    overflow: visible !important;
+  }
+  
+  // 表格列
+  .el-table-column--selection .cell {
+    background: transparent !important;
+  }
+  
+  .el-table__header {
+    background: linear-gradient(135deg, $primary-light 0%, color.adjust($primary-light, $lightness: 5%) 100%) !important;
+    
+    th {
+      background: transparent !important;
+      color: $text-primary !important;
+      font-weight: 600;
+      border-bottom: 2px solid $primary-color !important;
+    }
+  }
+  
+  .el-table__body {
+    background: $bg-color !important;
+    
+    tr {
+      transition: all 0.3s ease;
+      background: $bg-color !important;
+      
+      &:hover {
+        background: linear-gradient(135deg, $primary-light 0%, color.adjust($primary-light, $lightness: 8%) 100%) !important;
+        transform: scale(1.01);
+      }
+      
+      &:nth-child(even) {
+        background: rgba(255, 248, 225, 0.3) !important;
+      }
+    }
+    
+    td {
+      border-bottom: 1px solid $border-light !important;
+      color: $text-primary !important;
+      background: $bg-color !important;
+    }
+  }
+  
+  .el-table__empty-block {
+    background: $bg-color !important;
+  }
+  
+  .el-table__inner-wrapper {
+    background: $bg-color !important;
+  }
+  
+  .el-table__body-wrapper {
+    background: $bg-color !important;
+  }
+}
+
+
+
+// 表单标签样式 - 少女心
+.el-form-item__label {
+  font-weight: 600;
+  color: $text-primary;
+  position: relative;
+  
+  &::after {
+    content: '✨';
+    margin-left: 4px;
+    opacity: 0.6;
+    font-size: 12px;
+  }
+}
+
+// 输入框样式增强
+.el-input__wrapper {
+  border-radius: $border-radius-base;
+  box-shadow: $box-shadow-light;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: $box-shadow-cute;
+  }
+  
+  &.is-focus {
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+  }
+}
+
+// 选择器样式
+.el-select .el-input__wrapper {
+  background: linear-gradient(135deg, $bg-color 0%, color.adjust($bg-color, $lightness: 2%) 100%);
+}
+
+// 分页器样式
+.el-pagination {
+  .el-pager li {
+    border-radius: $border-radius-small;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $primary-light;
+      transform: translateY(-1px);
+    }
+    
+    &.is-active {
+      background: linear-gradient(45deg, $primary-color, color.adjust($primary-color, $lightness: 10%));
+      color: $text-primary;
+      box-shadow: $box-shadow-cute;
+    }
+  }
+  
+  .btn-prev, .btn-next {
+    border-radius: $border-radius-small;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $primary-light;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// 消息提示样式
+.el-message {
+  border-radius: $border-radius-large;
+  box-shadow: $box-shadow-cute;
+  
+  &.el-message--success {
+    background: linear-gradient(135deg, $success-color 0%, color.adjust($success-color, $lightness: 10%) 100%);
+  }
+  
+  &.el-message--warning {
+    background: linear-gradient(135deg, $warning-color 0%, color.adjust($warning-color, $lightness: 10%) 100%);
+  }
+  
+  &.el-message--error {
+    background: linear-gradient(135deg, $danger-color 0%, color.adjust($danger-color, $lightness: 10%) 100%);
+  }
+}
+
+// 对话框样式
+.el-dialog {
+  border-radius: $border-radius-large;
+  box-shadow: $box-shadow-dark;
+  
+  .el-dialog__header {
+    background: linear-gradient(135deg, $primary-light 0%, color.adjust($primary-light, $lightness: 5%) 100%);
+    border-radius: $border-radius-large $border-radius-large 0 0;
+    padding: 20px 24px;
+    
+    .el-dialog__title {
+      color: $text-primary;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+  
+  .el-dialog__body {
+    background: $bg-color;
+    padding: 24px;
+  }
+  
+  .el-dialog__footer {
+    background: $bg-color;
+    border-radius: 0 0 $border-radius-large $border-radius-large;
+    padding: 16px 24px;
+  }
+}
+
+// 标签页样式
+.el-tabs {
+  .el-tabs__header {
+    .el-tabs__nav {
+      .el-tabs__item {
+        border-radius: $border-radius-base $border-radius-base 0 0;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: $primary-light;
+          transform: translateY(-2px);
+        }
+        
+        &.is-active {
+          background: linear-gradient(135deg, $primary-color 0%, color.adjust($primary-color, $lightness: 10%) 100%);
+          color: $text-primary;
+          box-shadow: $box-shadow-cute;
+        }
+      }
+    }
+  }
+}
+
+// 加载动画增强
+.el-loading-mask {
+  background: rgba(255, 248, 225, 0.8);
+  
+  .el-loading-spinner {
+    .circular {
+      stroke: $primary-color;
+    }
+  }
+}
+
+// 表单组件少女心主题
+.el-form {
+  background-color: $bg-color !important;
+  border-radius: 12px;
+  padding-left: 12px;
+  
+  * {
+    background-color: inherit !important;
+    border-radius: 12px;
+  }
+  
+  .el-form-item {
+    background-color: $bg-color !important;
+
+    
+    .el-form-item__label {
+      background-color: $bg-color !important;
+    }
+    
+    .el-form-item__content {
+      background-color: $bg-color !important;
+    }
+    
+    .el-input {
+      .el-input__wrapper {
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 215, 61, 0.3);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          border-color: rgba(255, 215, 61, 0.6);
+          box-shadow: 0 0 8px rgba(255, 215, 61, 0.2);
+        }
+        
+        &.is-focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 12px rgba(255, 215, 61, 0.3);
+        }
+      }
+    }
+    
+    .el-textarea {
+      .el-textarea__inner {
+        background-color: rgba(255, 249, 196, 0.5) !important;
+        border: 1px solid rgba(255, 215, 61, 0.3);
+        border-radius: 16px;
+        
+        &:hover {
+          border-color: rgba(255, 215, 61, 0.6);
+        }
+        
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 12px rgba(255, 215, 61, 0.3);
+        }
+      }
+    }
+    
+    .el-select {
+      .el-select__wrapper {
+        background-color: rgba(255, 249, 196, 0.5) !important;
+        border: 1px solid rgba(255, 215, 61, 0.3);
+        border-radius: 16px;
+        
+        &:hover {
+          border-color: rgba(255, 215, 61, 0.6);
+        }
+        
+        &.is-focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 12px rgba(255, 215, 61, 0.3);
+        }
+      }
+    }
+    
+    .el-input-number {
+      .el-input__wrapper {
+        background-color: rgba(255, 249, 196, 0.5) !important;
+        border-radius: 16px;
+      }
+    }
+    
+    .el-date-editor {
+      .el-input__wrapper {
+        background-color: rgba(255, 249, 196, 0.5) !important;
+        border-radius: 16px;
+      }
+    }
+    
+    .el-radio-group {
+      background-color: $bg-color !important;
+      
+      .el-radio {
+        background-color: $bg-color !important;
+      }
+    }
+    
+    .el-switch {
+      background-color: $bg-color !important;
+    }
+  }
+}
+
+// 下拉菜单样式
+.el-select-dropdown {
+  background-color: rgba(255, 249, 196, 0.95);
+  border: 1px solid rgba(255, 215, 61, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 215, 61, 0.2);
+  
+  .el-select-dropdown__item {
+    &:hover {
+      background-color: rgba(255, 215, 61, 0.2);
+    }
+    
+    &.is-selected {
+      background-color: $primary-color;
+      color: $text-primary;
+    }
+  }
+}
+
+// 弹出框和下拉菜单通用样式
+.el-popper {
+  background: rgba(255, 249, 196, 0.95) !important;
+  border: 1px solid rgba(255, 215, 61, 0.3) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(255, 215, 61, 0.2) !important;
+}
+
+// 日期选择器样式
+.el-date-picker {
+  background: rgba(255, 249, 196, 0.95);
+  border: 1px solid rgba(255, 215, 61, 0.3);
+  
+  .el-date-table {
+    td {
+      &:hover {
+        background-color: rgba(255, 215, 61, 0.2);
+      }
+      
+      &.current {
+        background-color: $primary-color;
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+// 时间选择器样式
+.el-time-picker {
+  background: rgba(255, 249, 196, 0.95);
+  border: 1px solid rgba(255, 215, 61, 0.3);
+}
+
+// 标签样式增强
+.el-tag {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 61, 0.3);
+  background: linear-gradient(135deg, rgba(255, 249, 196, 0.8) 0%, rgba(255, 248, 225, 0.9) 100%);
+  color: #8d6e63;
+  
+  &.el-tag--success {
+    background: linear-gradient(135deg, rgba(139, 195, 74, 0.2) 0%, rgba(129, 199, 132, 0.2) 100%);
+    border-color: rgba(139, 195, 74, 0.4);
+    color: #4caf50;
+  }
+  
+  &.el-tag--warning {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 204, 153, 0.2) 100%);
+    border-color: rgba(255, 193, 7, 0.4);
+    color: #ff9800;
+  }
+  
+  &.el-tag--danger {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(255, 107, 157, 0.2) 100%);
+    border-color: rgba(244, 67, 54, 0.4);
+    color: #f44336;
+  }
+}
+
+// 通知组件样式
+.el-notification {
+  background: rgba(255, 249, 196, 0.95);
+  border: 1px solid rgba(255, 215, 61, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255, 215, 61, 0.2);
+  
+  .el-notification__title {
+    color: #8d6e63;
+  }
+  
+  .el-notification__content {
+    color: #5d4037;
+  }
+}
+
+// 抽屉组件样式
+.el-drawer {
+  background: linear-gradient(145deg, rgba(255, 249, 196, 0.95) 0%, rgba(255, 248, 225, 0.98) 100%);
+  
+  .el-drawer__header {
+    background: linear-gradient(135deg, rgba(255, 215, 61, 0.1) 0%, rgba(255, 204, 153, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 215, 61, 0.2);
+    padding: 20px;
+    
+    .el-drawer__title {
+      color: #8d6e63;
+      font-weight: 600;
+    }
+  }
+  
+  .el-drawer__body {
+    padding: 20px;
+  }
+}
+
+// 工具提示样式
+.el-tooltip__popper {
+  background: rgba(255, 249, 196, 0.95) !important;
+  border: 1px solid rgba(255, 215, 61, 0.3) !important;
+  border-radius: 6px !important;
+  color: #5d4037 !important;
+  
+  .el-tooltip__arrow::before {
+    background: rgba(255, 249, 196, 0.95) !important;
+    border: 1px solid rgba(255, 215, 61, 0.3) !important;
+  }
+}
+
+// 气泡确认框样式
+.el-popconfirm {
+  background: rgba(255, 249, 196, 0.95) !important;
+  border: 1px solid rgba(255, 215, 61, 0.3) !important;
+  border-radius: 8px !important;
+  
+  .el-popconfirm__main {
+    color: #5d4037;
+  }
+}
+
+// 步骤条样式
+.el-steps {
+  .el-step__head {
+    &.is-process {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+    
+    &.is-finish {
+      border-color: #4caf50;
+      color: #4caf50;
+    }
+  }
+  
+  .el-step__title {
+    &.is-process {
+      color: $primary-color;
+    }
+    
+    &.is-finish {
+      color: #4caf50;
+    }
+  }
+}
+
+// 面包屑样式
+.el-breadcrumb {
+  .el-breadcrumb__item {
+    .el-breadcrumb__inner {
+      color: #8d6e63;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+    
+    &:last-child .el-breadcrumb__inner {
+      color: $primary-color;
+    }
+  }
+}
+
+// 空状态样式
+.el-empty {
+  .el-empty__description {
+    color: #8d6e63;
+  }
+}
+
+// 骨架屏样式
+.el-skeleton {
+  .el-skeleton__item {
+    background: linear-gradient(90deg, rgba(255, 249, 196, 0.3) 25%, rgba(255, 215, 61, 0.2) 37%, rgba(255, 249, 196, 0.3) 63%);
+  }
+}
+
+// 回到顶部按钮样式
+.el-backtop {
+  background: linear-gradient(135deg, $primary-color 0%, rgba(255, 204, 153, 0.9) 100%) !important;
+  border: 1px solid rgba(255, 215, 61, 0.3) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(255, 215, 61, 0.3) !important;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 204, 153, 0.9) 0%, $primary-color 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 215, 61, 0.4) !important;
+  }
+  
+  i {
+    color: #8d6e63 !important;
+  }
+}
+
+// Element Plus 卡片组件少女心主题
+.el-card {
+  background: linear-gradient(145deg, rgba(255, 249, 196, 0.8) 0%, rgba(255, 248, 225, 0.9) 100%) !important;
+  border: 1px solid rgba(255, 215, 61, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(255, 215, 61, 0.1) !important;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 215, 61, 0.2) !important;
+    border-color: rgba(255, 215, 61, 0.4) !important;
+  }
+  
+  .el-card__header {
+    background: linear-gradient(135deg, rgba(255, 215, 61, 0.1) 0%, rgba(255, 204, 153, 0.1) 100%) !important;
+    border-bottom: 1px solid rgba(255, 215, 61, 0.2) !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 18px 20px;
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .card-title {
+        font-weight: 600;
+        color: #8d6e63;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .el-card__body {
+    padding: 20px;
+    background: transparent !important;
+  }
+}
+
+// 搜索卡片特殊样式
+.search-card {
+  margin-bottom: 20px;
+  background: transparent !important;
+  
+  .el-card__body {
+    padding: 16px 20px;
+    background: transparent !important;
+
+    .el-form-item__label{
+      // background-color: #8d6e63;
+    }
+  }
+
+}
+
+// 表格卡片特殊样式
+.table-card {
+  .el-card__body {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  
+  .el-table {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: $bg-color !important;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .el-table {
+    font-size: 12px;
+  }
+  
+  .el-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .el-card {
+    margin: 10px;
+    border-radius: 8px;
+    
+    .el-card__header {
+      padding: 12px 16px;
+      
+      .card-title {
+        font-size: 14px;
+      }
+    }
+    
+    .el-card__body {
+      padding: 16px;
+    }
+  }
+}

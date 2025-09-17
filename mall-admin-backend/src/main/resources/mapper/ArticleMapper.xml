@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.admin.mapper.ArticleMapper">
+
+    <!-- 获取已发布的文章列表 -->
+    <select id="findPublishedArticles" resultType="com.mall.admin.entity.Article">
+        SELECT * FROM blog_articles 
+        WHERE status = 1 
+        ORDER BY publish_time DESC
+    </select>
+
+    <!-- 根据分类获取文章列表 -->
+    <select id="findByCategory" resultType="com.mall.admin.entity.Article">
+        SELECT * FROM blog_articles 
+        WHERE category = #{category} AND status = 1
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 获取热门文章（根据浏览量排序） -->
+    <select id="findPopularArticles" resultType="com.mall.admin.entity.Article">
+        SELECT * FROM blog_articles 
+        WHERE status = 1 
+        ORDER BY view_count DESC 
+        LIMIT #{limit}
+    </select>
+
+    <!-- 搜索文章（支持标题和内容搜索） -->
+    <select id="searchArticles" resultType="com.mall.admin.entity.Article">
+        SELECT * FROM blog_articles 
+        WHERE status = 1 
+        <if test="keyword != null and keyword != ''">
+            AND (title LIKE CONCAT('%', #{keyword}, '%') 
+                 OR content LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 增加浏览次数 -->
+    <update id="incrementViewCount">
+        UPDATE blog_articles 
+        SET view_count = view_count + 1 
+        WHERE article_id = #{articleId}
+    </update>
+
+</mapper>

@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/category/category",
+    "pages/category-products/category-products",
+    "pages/products/products",
+    "pages/product-detail/product-detail",
+    "pages/cart/cart",
+    "pages/checkout/checkout",
+    "pages/address/address"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff69b4",
+    "navigationBarTitleText": "库洛米商城💜",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8b008b",
+    "selectedColor": "#ff69b4",
+    "backgroundColor": "#faf0ff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "img/icons/home-active.png",
+        "selectedIconPath": "img/icons/home.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "img/icons/category.png",
+        "selectedIconPath": "img/icons/category-active.png"
+      },
+      {
+        "pagePath": "pages/products/products",
+        "text": "产品",
+        "iconPath": "img/icons/products.png",
+        "selectedIconPath": "img/icons/products-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "img/icons/cart.png",
+        "selectedIconPath": "img/icons/cart-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

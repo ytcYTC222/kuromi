@@ -1,0 +1,544 @@
+// 库洛米主题样式文件
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap');
+
+// 库洛米主题配色
+:root {
+  --kuromi-primary: #8B008B;     // 深紫色
+  --kuromi-secondary: #FF69B4;   // 热粉色
+  --kuromi-accent: #000000;      // 黑色
+  --kuromi-light: #E6E6FA;       // 淡紫色
+  --kuromi-dark: #4B0082;        // 靛紫色
+  --kuromi-white: #FFFFFF;       // 白色
+  --kuromi-gray: #696969;        // 灰色
+  --kuromi-pink: #FFB6C1;        // 浅粉色
+  --kuromi-purple: #9370DB;      // 中紫色
+  --kuromi-black: #2F2F2F;       // 深灰黑
+  
+  // 新增渐变色彩
+  --kuromi-gradient-1: linear-gradient(135deg, #8B008B 0%, #FF69B4 50%, #9370DB 100%);
+  --kuromi-gradient-2: linear-gradient(45deg, #4B0082 0%, #8B008B 50%, #FF1493 100%);
+  --kuromi-gradient-3: linear-gradient(90deg, #000000 0%, #4B0082 50%, #8B008B 100%);
+  --kuromi-gradient-4: radial-gradient(circle, #FF69B4 0%, #8B008B 70%, #000000 100%);
+  --kuromi-gradient-5: linear-gradient(180deg, #E6E6FA 0%, #FFB6C1 50%, #FF69B4 100%);
+  
+  // 阴影效果
+  --kuromi-shadow-soft: 0 4px 15px rgba(139, 0, 139, 0.2);
+  --kuromi-shadow-medium: 0 8px 25px rgba(139, 0, 139, 0.3);
+  --kuromi-shadow-strong: 0 12px 35px rgba(139, 0, 139, 0.4);
+  --kuromi-shadow-glow: 0 0 20px rgba(255, 105, 180, 0.5);
+  --kuromi-shadow-dark: 0 6px 20px rgba(0, 0, 0, 0.3);
+  
+  // 发光效果
+  --kuromi-glow-pink: 0 0 15px rgba(255, 105, 180, 0.6);
+  --kuromi-glow-purple: 0 0 15px rgba(139, 0, 139, 0.6);
+  --kuromi-glow-white: 0 0 10px rgba(255, 255, 255, 0.8);
+  --kuromi-glow-magic: 0 0 25px rgba(147, 112, 219, 0.7);
+}
+
+// 库洛米主题色彩变量
+$kuromi-primary: #ff1493;     // 深粉色
+$kuromi-secondary: #ff69b4;   // 亮粉色
+$kuromi-accent: #9370db;      // 紫色
+$kuromi-dark: #2c2c2c;        // 深灰色
+$kuromi-light: #f8f8ff;       // 淡紫白
+$kuromi-skull: #f5f5f5;       // 骷髅白
+$kuromi-bow: #ff1493;         // 蝴蝶结粉
+
+// 库洛米主题字体
+.kuromi-font {
+  font-family: 'Fredoka One', cursive;
+}
+
+.kuromi-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+}
+
+// 库洛米主题按钮样式
+.kuromi-btn {
+  background: var(--kuromi-gradient-1);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--kuromi-shadow-medium);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--kuromi-shadow-strong), var(--kuromi-glow-pink);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--kuromi-shadow-soft);
+  }
+  
+  &.kuromi-btn-secondary {
+    background: var(--kuromi-gradient-2);
+  }
+  
+  &.kuromi-btn-dark {
+    background: var(--kuromi-gradient-3);
+  }
+}
+
+// 库洛米主题卡片样式
+.kuromi-card {
+  background: var(--kuromi-gradient-5);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  box-shadow: var(--kuromi-shadow-medium);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--kuromi-gradient-1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--kuromi-shadow-strong), var(--kuromi-glow-purple);
+    border-color: var(--kuromi-secondary);
+    
+    &::before {
+      opacity: 0.1;
+    }
+  }
+  
+  &.kuromi-card-dark {
+    background: var(--kuromi-gradient-3);
+    color: white;
+  }
+  
+  &.kuromi-card-magic {
+    background: var(--kuromi-gradient-4);
+    box-shadow: var(--kuromi-shadow-glow), var(--kuromi-glow-magic);
+  }
+}
+
+// 库洛米主题输入框样式
+.kuromi-input {
+  border: 2px solid $kuromi-secondary;
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $kuromi-secondary !important;
+    box-shadow: none !important;
+    background: white;
+  }
+  
+  &::placeholder {
+    color: rgba($kuromi-accent, 0.6);
+    font-style: italic;
+  }
+}
+
+// 库洛米主题标题样式
+.kuromi-title {
+  font-family: 'Fredoka One', cursive;
+  color: $kuromi-primary;
+  text-shadow: 2px 2px 4px rgba($kuromi-primary, 0.3);
+  position: relative;
+  
+  &::after {
+    content: '💜';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: kuromi-heart-beat 2s ease-in-out infinite;
+  }
+}
+
+// 库洛米主题表格样式
+.kuromi-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba($kuromi-primary, 0.15);
+  
+  th {
+    background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    padding: 12px;
+    border: none;
+  }
+  
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba($kuromi-secondary, 0.2);
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  tr:nth-child(even) {
+    background: rgba($kuromi-light, 0.5);
+  }
+  
+  tr:hover {
+    background: rgba($kuromi-secondary, 0.1);
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+  }
+}
+
+// 库洛米主题标签样式
+.kuromi-tag {
+  background: linear-gradient(45deg, $kuromi-accent, $kuromi-secondary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  margin: 2px;
+  box-shadow: 0 2px 4px rgba($kuromi-accent, 0.3);
+  
+  &.kuromi-tag-success {
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+  }
+  
+  &.kuromi-tag-warning {
+    background: linear-gradient(45deg, #ff9800, #ffc107);
+  }
+  
+  &.kuromi-tag-danger {
+    background: linear-gradient(45deg, #f44336, #e91e63);
+  }
+}
+
+// 库洛米主题通知样式
+.kuromi-notification {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 255, 0.9));
+  border: 2px solid $kuromi-secondary;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba($kuromi-primary, 0.2);
+  position: relative;
+  
+  &::before {
+    content: '🎀';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 20px;
+    animation: kuromi-bounce 2s ease-in-out infinite;
+  }
+}
+
+// 库洛米主题侧边栏样式
+.kuromi-sidebar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 255, 0.9));
+  border-right: 3px solid $kuromi-secondary;
+  
+  .menu-item {
+    border-radius: 12px;
+    margin: 4px 8px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba($kuromi-secondary, 0.1);
+      transform: translateX(5px);
+    }
+    
+    &.active {
+      background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary);
+      color: white;
+      box-shadow: 0 4px 8px rgba($kuromi-primary, 0.3);
+    }
+  }
+}
+
+// 库洛米主题头部样式
+.kuromi-header {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 255, 0.9));
+  border-bottom: 3px solid $kuromi-secondary;
+  box-shadow: 0 2px 8px rgba($kuromi-primary, 0.1);
+  
+  .header-title {
+    font-family: 'Fredoka One', cursive;
+    color: $kuromi-primary;
+    text-shadow: 1px 1px 2px rgba($kuromi-primary, 0.3);
+  }
+}
+
+// 库洛米动画效果
+@keyframes kuromi-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: rotate(180deg) scale(1.1);
+  }
+}
+
+@keyframes kuromi-heart-beat {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+@keyframes kuromi-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes kuromi-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes kuromi-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+// 库洛米主题工具类
+.kuromi-float {
+  animation: kuromi-float 3s ease-in-out infinite;
+}
+
+.kuromi-wiggle {
+  animation: kuromi-wiggle 2s ease-in-out infinite;
+}
+
+.kuromi-glow {
+  box-shadow: 0 0 20px rgba($kuromi-primary, 0.5);
+}
+
+.kuromi-text-gradient {
+  background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary, $kuromi-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// 库洛米自定义鼠标指针
+.kuromi-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23FF69B4" stroke="%238B008B" stroke-width="2"/><text x="12" y="16" text-anchor="middle" font-size="12" fill="white">💜</text></svg>'), auto;
+}
+
+.kuromi-cursor-pointer {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="%238B008B" stroke="%23FF69B4" stroke-width="2"/><text x="10" y="14" text-anchor="middle" font-size="10" fill="white">🖤</text></svg>'), pointer;
+}
+
+// 为库洛米主题元素应用自定义指针
+.kuromi-theme {
+  @extend .kuromi-cursor;
+  
+  .kuromi-btn, .kuromi-card:hover, a, button {
+    @extend .kuromi-cursor-pointer;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .kuromi-title {
+    font-size: 1.5rem;
+    
+    &::after {
+      right: -25px;
+      font-size: 16px;
+    }
+  }
+  
+  .kuromi-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .kuromi-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+// Element Plus 组件库洛米主题覆盖
+.el-button--primary {
+  background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary) !important;
+  border-color: $kuromi-primary !important;
+  color: white !important;
+  
+  &:hover {
+    background: linear-gradient(45deg, $kuromi-secondary, $kuromi-accent) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba($kuromi-primary, 0.3);
+    color: white !important;
+  }
+}
+
+// Element Plus 输入框样式覆盖 - 移除焦点边框
+.el-input__inner {
+  border-radius: 12px !important;
+  border-color: $kuromi-secondary !important;
+  
+  &:focus {
+    border-color: $kuromi-secondary !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.el-input__wrapper {
+  &:focus-within {
+    box-shadow: none !important;
+  }
+}
+
+.el-input {
+  &.is-focus .el-input__wrapper {
+    box-shadow: none !important;
+  }
+}
+
+.el-input-number {
+  .el-input__wrapper {
+    &:focus-within {
+      box-shadow: none !important;
+    }
+  }
+  
+  .el-input__inner {
+    &:focus {
+      border-color: $kuromi-secondary !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+}
+
+.el-textarea__inner {
+  &:focus {
+    border-color: $kuromi-secondary !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.el-card {
+  border-radius: 16px !important;
+  border-color: $kuromi-secondary !important;
+  box-shadow: 0 4px 12px rgba($kuromi-primary, 0.1) !important;
+}
+
+.el-table th {
+  background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary) !important;
+  color: white !important;
+  font-family: 'Fredoka One', cursive !important;
+}
+
+.el-pagination .el-pager li.active {
+  background: $kuromi-primary !important;
+  border-color: $kuromi-primary !important;
+}
+
+.el-menu-item.is-active {
+  background: linear-gradient(45deg, $kuromi-primary, $kuromi-secondary) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  margin: 2px 4px !important;
+}
+
+// 开关组件样式
+.el-switch {
+  // 激活状态的背景色
+  &.is-checked {
+    .el-switch__core {
+      background-color: $kuromi-primary !important;
+      border-color: $kuromi-primary !important;
+    }
+  }
+  
+  // 开关核心样式
+  .el-switch__core {
+    border: 2px solid #dcdfe6 !important;
+    transition: all 0.3s ease !important;
+    
+    // 悬停状态
+    &:hover {
+      border-color: $kuromi-secondary !important;
+    }
+    
+    // 滑块样式
+    &::after {
+      background-color: white !important;
+      box-shadow: 0 2px 4px rgba($kuromi-primary, 0.3) !important;
+      transition: all 0.3s ease !important;
+    }
+  }
+  
+  // 激活状态下的滑块
+  &.is-checked .el-switch__core::after {
+    background-color: white !important;
+    box-shadow: 0 2px 8px rgba($kuromi-primary, 0.5) !important;
+  }
+  
+  // 焦点状态
+  &:focus .el-switch__core {
+    outline: none !important;
+    border-color: $kuromi-secondary !important;
+    box-shadow: 0 0 0 2px rgba($kuromi-primary, 0.2) !important;
+  }
+}

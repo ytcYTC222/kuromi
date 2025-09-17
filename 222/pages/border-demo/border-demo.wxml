@@ -1,0 +1,169 @@
+<!--边框组件演示页面-->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="demo-header">
+    <text class="demo-title">库洛米边框组件演示</text>
+    <text class="demo-subtitle">现代化边框设计系统</text>
+  </view>
+
+  <!-- 基础边框样式 -->
+  <view class="demo-section">
+    <text class="section-title">基础边框样式</text>
+    <view class="demo-grid">
+      <view class="demo-item kuromi-border kuromi-border-solid">
+        <text class="demo-text">实线边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-dashed">
+        <text class="demo-text">虚线边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-dotted">
+        <text class="demo-text">点线边框</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 边框宽度变体 -->
+  <view class="demo-section">
+    <text class="section-title">边框宽度变体</text>
+    <view class="demo-grid">
+      <view class="demo-item kuromi-border kuromi-border-thin kuromi-border-primary">
+        <text class="demo-text">细边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-normal kuromi-border-primary">
+        <text class="demo-text">标准边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-medium kuromi-border-primary">
+        <text class="demo-text">中等边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-thick kuromi-border-primary">
+        <text class="demo-text">粗边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-bold kuromi-border-primary">
+        <text class="demo-text">加粗边框</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 边框颜色变体 -->
+  <view class="demo-section">
+    <text class="section-title">边框颜色变体</text>
+    <view class="demo-grid">
+      <view class="demo-item kuromi-border kuromi-border-primary">
+        <text class="demo-text">主色边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-secondary">
+        <text class="demo-text">次色边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-success">
+        <text class="demo-text">成功边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-warning">
+        <text class="demo-text">警告边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-error">
+        <text class="demo-text">错误边框</text>
+      </view>
+      <view class="demo-item kuromi-border kuromi-border-info">
+        <text class="demo-text">信息边框</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 渐变边框 -->
+  <view class="demo-section">
+    <text class="section-title">渐变边框效果</text>
+    <view class="demo-grid">
+      <view class="demo-item kuromi-border-gradient kuromi-border-gradient-1">
+        <text class="demo-text">渐变边框 1</text>
+      </view>
+      <view class="demo-item kuromi-border-gradient kuromi-border-gradient-2">
+        <text class="demo-text">渐变边框 2</text>
+      </view>
+      <view class="demo-item kuromi-border-gradient kuromi-border-gradient-3">
+        <text class="demo-text">渐变边框 3</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 交互边框 -->
+  <view class="demo-section">
+    <text class="section-title">交互边框效果</text>
+    <view class="demo-grid">
+      <view class="demo-item kuromi-border-interactive">
+        <text class="demo-text">悬停交互边框</text>
+        <text class="demo-hint">鼠标悬停查看效果</text>
+      </view>
+      <view class="demo-item kuromi-border-glow">
+        <text class="demo-text">发光边框</text>
+        <text class="demo-hint">自动发光动画</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 卡片边框 -->
+  <view class="demo-section">
+    <text class="section-title">卡片边框组件</text>
+    <view class="kuromi-card-border">
+      <text class="card-title">库洛米卡片</text>
+      <text class="card-content">这是一个带有顶部渐变装饰的卡片边框组件，具有悬停交互效果和现代化的设计风格。</text>
+      <view class="card-actions">
+        <text class="card-action">查看详情</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 输入框边框 -->
+  <view class="demo-section">
+    <text class="section-title">输入框边框组件</text>
+    <view class="input-demo-grid">
+      <input class="kuromi-input-border" placeholder="默认输入框" />
+      <input class="kuromi-input-border success" placeholder="成功状态输入框" />
+      <input class="kuromi-input-border warning" placeholder="警告状态输入框" />
+      <input class="kuromi-input-border error" placeholder="错误状态输入框" />
+    </view>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="demo-section">
+    <text class="section-title">分割线边框</text>
+    <view class="divider-demo">
+      <text class="demo-text">普通分割线</text>
+      <view class="kuromi-divider"></view>
+      <text class="demo-text">渐变分割线</text>
+      <view class="kuromi-divider-gradient"></view>
+      <text class="demo-text">分割线下方内容</text>
+    </view>
+  </view>
+
+  <!-- 组合示例 -->
+  <view class="demo-section">
+    <text class="section-title">组合应用示例</text>
+    <view class="combination-demo">
+      <view class="kuromi-card-border">
+        <text class="card-title">用户信息卡片</text>
+        <view class="user-info">
+          <view class="avatar kuromi-border kuromi-border-primary kuromi-border-medium"></view>
+          <view class="user-details">
+            <text class="username">库洛米用户</text>
+            <text class="user-desc">设计系统爱好者</text>
+          </view>
+        </view>
+        <view class="kuromi-divider-gradient"></view>
+        <view class="user-stats">
+          <view class="stat-item kuromi-border kuromi-border-light">
+            <text class="stat-number">128</text>
+            <text class="stat-label">关注</text>
+          </view>
+          <view class="stat-item kuromi-border kuromi-border-light">
+            <text class="stat-number">256</text>
+            <text class="stat-label">粉丝</text>
+          </view>
+          <view class="stat-item kuromi-border kuromi-border-light">
+            <text class="stat-number">64</text>
+            <text class="stat-label">作品</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

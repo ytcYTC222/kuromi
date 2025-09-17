@@ -1,0 +1,162 @@
+<!-- 购物车页面 -->
+<view class="page-container">
+  <!-- 购物车标题 -->
+  <view class="cart-header">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">购物车</view>
+        <view class="section-description">管理您的购物车并完成订单</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车内容 -->
+  <view class="cart-content">
+    <view class="container">
+      <!-- 加载状态 -->
+      <view class="loading-container" wx:if="{{loading}}">
+        <view class="loading-text">加载中...</view>
+      </view>
+      
+      <!-- 购物车为空时显示 -->
+      <view class="empty-cart" wx:elif="{{!cartItems || cartItems.length === 0}}">
+        <image src="/img/empty-cart.png" class="empty-cart-image"></image>
+        <view class="empty-cart-text">您的购物车还是空的</view>
+        <view class="empty-cart-subtext">浏览我们的产品并添加到购物车</view>
+        <button class="primary-button" bindtap="goToProducts">
+          去选购
+        </button>
+      </view>
+
+      <!-- 购物车有商品时显示 -->
+      <block wx:else>
+        <!-- 购物车列表 -->
+        <view class="cart-list">
+          <block wx:for="{{cartItems}}" wx:key="id">
+            <view class="cart-item">
+              <view class="cart-item-checkbox">
+                <checkbox checked="{{item.checked}}" bindtap="toggleItemCheck" data-id="{{item.id}}"></checkbox>
+              </view>
+              <view class="cart-item-image">
+                <image 
+                  src="{{item.image}}" 
+                  mode="aspectFill"
+                  lazy-load="true"
+                  show-menu-by-longpress="true"
+                  binderror="onImageError"
+                  bindload="onImageLoad"
+                  data-id="{{item.id}}"
+                  class="product-image"
+                ></image>
+                <view class="image-overlay" wx:if="{{item.imageLoading}}">
+                  <view class="loading-spinner-small"></view>
+                </view>
+                <view class="image-placeholder" wx:if="{{item.imageError}}">
+                  <text class="placeholder-icon">📷</text>
+                  <text class="placeholder-text">图片加载失败</text>
+                </view>
+              </view>
+              <view class="cart-item-info">
+                <view class="cart-item-title">{{item.title}}</view>
+                <view class="cart-item-attributes" wx:if="{{item.attributes}}">
+                  <text>{{item.attributes}}</text>
+                </view>
+                <view class="cart-item-price-row">
+                  <view class="cart-item-price">¥{{item.price}}</view>
+                  <view class="quantity-control">
+                    <view class="quantity-button" catchtap="decreaseQuantity" data-id="{{item.id}}">-</view>
+                    <view class="quantity-number">{{item.quantity}}</view>
+                    <view class="quantity-button" catchtap="increaseQuantity" data-id="{{item.id}}">+</view>
+                  </view>
+                </view>
+              </view>
+              <view class="cart-item-delete" catchtap="deleteItem" data-id="{{item.id}}">
+                <text>🗑️</text>
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <!-- 购物车底部 -->
+        <view class="cart-footer">
+          <view class="cart-total">
+            <view class="select-all">
+              <checkbox checked="{{selectAll}}" bindtap="toggleSelectAll"></checkbox>
+              <text>全选</text>
+            </view>
+            <view class="total-price">
+              <text>合计：</text>
+              <text class="total-amount">¥{{totalPrice}}</text>
+            </view>
+          </view>
+          <button class="checkout-button" bindtap="checkout">
+            去结算 ({{selectedCount}})
+          </button>
+        </view>
+        
+        <!-- 猜你喜欢 -->
+        <view class="recommendations">
+          <view class="recommendation-header">
+            <view class="section-title">🛍️ 猜你喜欢</view>
+            <view class="section-subtitle">热门商品推荐</view>
+            <view class="refresh-btn" bindtap="refreshRecommendations" wx:if="{{!loadingRecommendations}}">
+              <text class="refresh-icon">🔄</text>
+              <text class="refresh-text">换一批</text>
+            </view>
+          </view>
+          
+          <!-- 加载状态 -->
+          <view wx:if="{{loadingRecommendations}}" class="loading-recommendations">
+            <view class="loading-spinner"></view>
+            <view class="loading-text">正在为您推荐商品...</view>
+          </view>
+          
+          <!-- 推荐商品列表 -->
+          <view wx:elif="{{recommendedProducts && recommendedProducts.length > 0}}" class="recommended-products">
+            <block wx:for="{{recommendedProducts}}" wx:key="id">
+              <view class="recommended-product" bindtap="navigateToProduct" data-id="{{item.id}}">
+                <view class="product-badge" wx:if="{{item.originalPrice && item.originalPrice != item.price}}">
+                  <text class="badge-text">特惠</text>
+                </view>
+                <image src="{{item.image}}" class="recommended-image" mode="aspectFill" lazy-load="true"></image>
+                <view class="recommended-info">
+                  <view class="recommended-title">{{item.title}}</view>
+                  <view class="recommended-category">{{item.categoryName}}</view>
+                  <view class="recommended-rating" wx:if="{{item.rating > 0}}">
+                    <view class="rating-stars">
+                      <block wx:for="{{[1,2,3,4,5]}}" wx:key="*this" wx:for-item="star">
+                        <text class="star {{star <= item.rating ? 'star-filled' : 'star-empty'}}">★</text>
+                      </block>
+                    </view>
+                    <text class="rating-score">{{item.rating}}</text>
+                    <text class="rating-count">({{item.ratingCount}})</text>
+                  </view>
+                  <view class="recommended-price">
+                    <text class="current-price">¥{{item.price}}</text>
+                    <text wx:if="{{item.originalPrice && item.originalPrice != item.price}}" class="original-price">¥{{item.originalPrice}}</text>
+                  </view>
+                  <view class="recommended-sales" wx:if="{{item.salesCount > 0}}">
+                    <text class="sales-icon">🔥</text>
+                    <text>已售{{item.salesCount}}件</text>
+                  </view>
+                  <view class="add-to-cart-btn" catchtap="addToCartFromRecommendation" data-id="{{item.id}}">
+                    <text class="cart-icon">🛒</text>
+                    <text>加入购物车</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+          
+          <!-- 空状态 -->
+          <view wx:else class="empty-recommendations">
+            <view class="empty-icon">📦</view>
+            <view class="empty-text">暂无推荐商品</view>
+            <view class="empty-subtext">稍后再来看看吧</view>
+            <button class="retry-btn" bindtap="refreshRecommendations">重新加载</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

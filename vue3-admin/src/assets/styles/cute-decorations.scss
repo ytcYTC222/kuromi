@@ -1,0 +1,333 @@
+// 少女心装饰样式文件
+// Cute decorations for girly theme
+@use 'sass:color';
+
+// 可爱的浮动装饰元素
+.cute-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  
+  &::before {
+    content: '🌸';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    font-size: 20px;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '✨';
+    position: absolute;
+    top: 20%;
+    right: 8%;
+    font-size: 16px;
+    opacity: 0.4;
+    animation: float 4s ease-in-out infinite reverse;
+  }
+}
+
+// 页面标题装饰
+.page-title {
+  position: relative;
+  display: inline-block;
+  
+  &::before {
+    content: '🎀';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.7;
+  }
+  
+  &::after {
+    content: '🎀';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.7;
+  }
+}
+
+// 卡片标题装饰
+.card-title {
+  position: relative;
+  padding-left: 25px;
+  
+  &::before {
+    content: '💖';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+}
+
+// 可爱的边框装饰
+.cute-border {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, $cute-pink, $cute-peach, $primary-color) border-box;
+  border-radius: $border-radius-large;
+}
+
+// 闪烁效果
+.sparkle {
+  position: relative;
+  overflow: visible;
+  
+  &::before {
+    content: '✨';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 14px;
+    animation: sparkle 2s ease-in-out infinite;
+    z-index: 9999;
+    pointer-events: none;
+  }
+}
+
+// 心形装饰按钮
+.heart-button {
+  position: relative;
+  overflow: visible;
+  
+  &::after {
+    content: '💕';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 16px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+    animation: heartBeat 0.6s ease-in-out;
+  }
+}
+
+// 可爱的工具提示
+.cute-tooltip {
+  background: linear-gradient(135deg, $cute-pink 0%, $cute-peach 100%);
+  border-radius: $border-radius-large;
+  color: $text-primary;
+  font-weight: 500;
+  box-shadow: $box-shadow-cute;
+  
+  &::before {
+    border-top-color: $cute-pink;
+  }
+}
+
+// 状态标签装饰
+.status-tag {
+  position: relative;
+  border-radius: $border-radius-round;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  
+  &.status-active {
+    background: linear-gradient(45deg, $success-color, color.adjust($success-color, $lightness: 15%));
+    color: $text-primary;
+  }
+  
+  &.status-inactive {
+    background: linear-gradient(45deg, $text-secondary, color.adjust($text-secondary, $lightness: 15%));
+    color: $text-primary;
+  }
+  
+  &.status-pending {
+    background: linear-gradient(45deg, $warning-color, color.adjust($warning-color, $lightness: 15%));
+    color: $text-primary;
+    
+    &::before {
+      content: '🟡';
+      margin-right: 4px;
+    }
+  }
+}
+
+// 搜索框装饰
+.search-box {
+  position: relative;
+  
+  &::before {
+    content: '🔍';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0.6;
+  }
+  
+  .el-input__wrapper {
+    padding-left: 35px;
+    background: linear-gradient(135deg, rgba(255, 248, 225, 0.8) 0%, rgba(255, 253, 231, 0.9) 100%);
+    border: 2px solid $primary-light;
+    
+    &:hover {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.1);
+    }
+  }
+}
+
+// 数据为空时的可爱提示
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: $text-secondary;
+  
+  &::before {
+    content: '🌸';
+    display: block;
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+  
+  .empty-text {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .empty-description {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+}
+
+// 动画定义
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+// 响应式装饰调整
+@media (max-width: 768px) {
+  .cute-decorations {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  
+  .page-title {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  
+  .search-box {
+    &::before {
+      left: 8px;
+    }
+    
+    .el-input__wrapper {
+      padding-left: 30px;
+    }
+  }
+}
+
+// 特殊场景装饰
+.celebration {
+  position: relative;
+  
+  &::before {
+    content: '🎉';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 20px;
+    animation: pulse 2s infinite;
+  }
+}
+
+.success-decoration {
+  position: relative;
+  
+  &::after {
+    content: '🌟';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 14px;
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+}
+
+// 可爱的加载状态
+.cute-loading {
+  display: inline-block;
+  
+  &::after {
+    content: '🌸';
+    display: inline-block;
+    animation: float 1s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "navigationBarTitleText": "库洛米边框组件演示",
+  "navigationBarBackgroundColor": "#8B008B",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F0FF",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {},
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true
+    }
+  },
+  "styleIsolation": "shared"
+}

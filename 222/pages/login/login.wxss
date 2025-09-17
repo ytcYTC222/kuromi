@@ -1,0 +1,253 @@
+/* 登录注册页面样式 - 库洛米主题 */
+.login-container {
+  min-height: 100vh;
+  background: var(--kuromi-gradient-1);
+  padding: 40rpx 60rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.login-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 0, 139, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.login-container::after {
+  content: '💜✨🎀';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 32rpx;
+  animation: float 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* 顶部标题 */
+.header {
+  text-align: center;
+  margin-bottom: 80rpx;
+  padding-top: 60rpx;
+}
+
+.logo {
+  margin-bottom: 20rpx;
+}
+
+.logo-text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* 切换标签 */
+.tab-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50rpx;
+  padding: 8rpx;
+  margin-bottom: 60rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 42rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-item.active {
+  background: #ffffff;
+  color: #333333;
+  font-weight: 600;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 表单容器 - 库洛米主题 */
+.form-container {
+  background: rgba(255, 255, 255, 0.95);
+  border: 4rpx solid rgba(255, 105, 180, 0.3);
+  border-radius: 40rpx;
+  padding: 60rpx 50rpx;
+  margin-bottom: 40rpx;
+  backdrop-filter: blur(10rpx);
+  box-shadow: var(--kuromi-shadow-strong), var(--kuromi-glow-pink);
+  position: relative;
+}
+
+.form-container::before {
+  content: '🎀';
+  position: absolute;
+  top: -20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32rpx;
+  background: white;
+  padding: 0 16rpx;
+  border-radius: 50%;
+  box-shadow: var(--kuromi-shadow-soft);
+}
+
+/* 表单组 */
+.form-group {
+  margin-bottom: 40rpx;
+}
+
+.input-label {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  color: #333333;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #165DFF;
+  background: #ffffff;
+  box-shadow: 0 0 0 6rpx rgba(22, 93, 255, 0.1);
+}
+
+.form-picker {
+  width: 100%;
+  height: 88rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-picker:active {
+  border-color: #165DFF;
+  background: #ffffff;
+}
+
+.picker-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #165DFF 0%, #0052D9 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 20rpx;
+  box-shadow: 0 8rpx 30rpx rgba(22, 93, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submit-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 20rpx rgba(22, 93, 255, 0.3);
+}
+
+.submit-btn[loading] {
+  opacity: 0.7;
+}
+
+/* 表单底部 */
+.form-footer {
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.forgot-password {
+  font-size: 26rpx;
+  color: #165DFF;
+  text-decoration: underline;
+}
+
+
+
+/* 响应式设计 */
+@media (max-width: 750rpx) {
+  .login-container {
+    padding: 30rpx 40rpx;
+  }
+  
+  .form-container {
+    padding: 40rpx 30rpx;
+  }
+  
+  .header {
+    margin-bottom: 60rpx;
+    padding-top: 40rpx;
+  }
+  
+  .logo-text {
+    font-size: 42rpx;
+  }
+  
+  .subtitle {
+    font-size: 26rpx;
+  }
+}
+
+/* 动画效果 */
+.form-container {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-item {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

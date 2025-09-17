@@ -1,0 +1,112 @@
+<!-- 分类商品页面 -->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="category-products-header">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">{{categoryName}}</view>
+        <view class="section-description">{{categoryDescription || '浏览该分类下的所有商品'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-section">
+    <view class="container">
+      <view class="filter-row">
+        <view class="filter-group">
+          <view class="filter-label">排序方式:</view>
+          <picker bindchange="changeSorting" value="{{sortingIndex}}" range="{{sortingOptions}}">
+            <view class="filter-value">
+              {{sortingOptions[sortingIndex]}} ▼
+            </view>
+          </picker>
+        </view>
+        
+        <view class="filter-group">
+          <view class="filter-label">价格区间:</view>
+          <picker bindchange="changePriceRange" value="{{priceRangeIndex}}" range="{{priceRangeOptions}}">
+            <view class="filter-value">
+              {{priceRangeOptions[priceRangeIndex]}} ▼
+            </view>
+          </picker>
+        </view>
+        
+
+      </view>
+      
+      <view class="filter-tags">
+        <block wx:for="{{activeTags}}" wx:key="id">
+          <view class="filter-tag" bindtap="removeTag" data-id="{{item.id}}">
+            {{item.name}} ×
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="products-list">
+    <view class="container">
+      <!-- 加载状态 -->
+      <view wx:if="{{loading && products.length === 0}}" class="loading-container">
+        <view class="loading-spinner"></view>
+        <text class="loading-text">加载中...</text>
+      </view>
+      
+      <!-- 空状态 -->
+      <view wx:elif="{{!loading && products.length === 0}}" class="empty-container">
+        <view class="empty-icon">📦</view>
+        <text class="empty-text">该分类下暂无商品</text>
+        <text class="empty-desc">请尝试调整筛选条件</text>
+      </view>
+      
+      <!-- 商品网格 -->
+      <view wx:else class="products-grid">
+        <block wx:for="{{products}}" wx:key="id">
+          <view class="product-card" bindtap="navigateToProduct" data-id="{{item.id}}">
+            <view class="product-image-container">
+              <image src="{{item.image}}" class="product-image" mode="aspectFill" lazy-load="true" />
+              <view class="product-add-to-cart" catchtap="addToCart" data-id="{{item.id}}">加入购物车</view>
+            </view>
+            <view class="product-content">
+              <view class="product-rating">
+                <view class="rating-stars">
+                  <block wx:for="{{5}}" wx:key="*this" wx:for-item="star">
+                    <text>{{star < item.rating ? '★' : (star === Math.floor(item.rating) && item.rating % 1 !== 0 ? '☆' : '☆')}}</text>
+                  </block>
+                </view>
+                <text class="rating-count">({{item.ratingCount}})</text>
+              </view>
+              <view class="product-title">{{item.title}}</view>
+              <view class="product-description">{{item.description}}</view>
+              <view class="product-footer">
+                <text class="product-price">¥{{item.price}}</text>
+                <view class="add-to-cart-button" catchtap="addToCart" data-id="{{item.id}}">
+                  🛒
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      
+      <!-- 加载更多 -->
+      <view wx:if="{{loading && products.length > 0}}" class="load-more">
+        <view class="loading-spinner"></view>
+        <text class="loading-text">加载中...</text>
+      </view>
+      
+      <!-- 分页 -->
+      <view wx:if="{{products.length > 0}}" class="pagination">
+        <view class="page-button {{currentPage === 1 || loading ? 'disabled' : ''}}" bindtap="prevPage">
+          ← 上一页
+        </view>
+        <view class="page-info">{{currentPage}}/{{totalPages}}</view>
+        <view class="page-button {{!hasMore || loading ? 'disabled' : ''}}" bindtap="nextPage">
+          下一页 →
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

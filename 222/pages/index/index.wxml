@@ -1,0 +1,212 @@
+<!-- 首页 -->
+<scroll-view 
+  class="page-scroll" 
+  scroll-y="true" 
+  refresher-enabled="true" 
+  refresher-triggered="{{refreshing}}"
+  bindrefresherrefresh="onRefresh"
+  style="height: 100vh;"
+>
+  <view class="page-container">
+  <!-- 用户状态栏 -->
+  <view class="user-status-bar">
+    <view class="user-info" wx:if="{{userInfo}}">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" wx:if="{{userInfo.avatarUrl}}" />
+      <view class="user-details">
+        <text class="user-nickname">{{userInfo.nickname}}</text>
+        <text class="user-phone">{{userInfo.phone}}</text>
+      </view>
+      <button class="logout-btn" bindtap="logout" size="mini">退出</button>
+    </view>
+    <view class="login-prompt" wx:else>
+      <view class="default-avatar-placeholder"></view>
+      <view class="prompt-text">
+        <text class="prompt-title">登录享受更多服务</text>
+        <text class="prompt-subtitle">购物车、收藏、订单管理</text>
+      </view>
+      <button class="login-btn" bindtap="navigateToLogin" size="mini">立即登录</button>
+    </view>
+  </view>
+  
+  <!-- 顶部区域 -->
+  <view class="hero-section">
+    <view class="container">
+      <view class="hero-content">
+        <view class="hero-text">
+          <view class="hero-title">
+            发现适合每个<text class="primary-text">房间</text>的时尚玩偶！
+          </view>
+          <view class="hero-description">
+            精心挑选的高品质，为您打造舒适、美观且实用的生活空间。
+          </view>
+          <view class="hero-buttons">
+            <button class="primary-button" bindtap="navigateToProducts">
+              立即选购
+            </button>
+            <button class="secondary-button" bindtap="navigateToCategory">
+              浏览分类
+            </button>
+          </view>
+        </view>
+        <view class="hero-images">
+          <view class="main-hero-image" wx:if="{{banners.length > 0}}">
+            <image src="{{banners[0].image}}" mode="aspectFill" lazy-load="true" />
+          </view>
+          <view class="secondary-hero-image" wx:if="{{banners.length > 1}}">
+            <image src="{{banners[1].image}}" mode="aspectFill" lazy-load="true" />
+          </view>
+          <!-- 默认占位符，当没有数据时显示 -->
+          <view class="main-hero-placeholder" wx:if="{{banners.length === 0}}">
+            <view class="placeholder-content">暂无轮播图</view>
+          </view>
+          <view class="secondary-hero-placeholder" wx:if="{{banners.length <= 1}}">
+            <view class="placeholder-content">暂无副图</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 限时特惠区域 -->
+  <view class="promotion-section">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">限时特惠</view>
+        <view class="section-description">精选玩偶，限时折扣，打造您的理想家居空间</view>
+      </view>
+      
+      <view class="promotion-cards">
+        <block wx:for="{{promotions}}" wx:key="id">
+          <view class="promotion-card" bindtap="navigateToProduct" data-id="{{item.id}}">
+            <view class="promotion-image-container">
+              <image src="{{item.image}}" class="promotion-image" mode="aspectFill" lazy-load="true" />
+              <view class="promotion-badge">{{item.discountText}}</view>
+            </view>
+            <view class="promotion-content">
+              <view class="promotion-title">{{item.title}}</view>
+              <view class="promotion-description">{{item.description}}</view>
+              <view class="promotion-footer">
+                <view class="price-container">
+                  <text class="old-price">¥{{item.originalPrice}}</text>
+                  <text class="new-price">¥{{item.currentPrice}}</text>
+                </view>
+                <button class="primary-button-sm" catchtap="addToCart" data-id="{{item.id}}">添加到购物车</button>
+              </view>
+            </view>
+          </view>
+        </block>
+        
+        <!-- 默认提示，当没有数据时显示 -->
+        <view class="promotion-placeholder" wx:if="{{promotions.length === 0}}">
+          <view class="placeholder-content">暂无促销活动</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 按类别选购 -->
+  <view class="categories-section">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">按类别选购</view>
+        <view class="section-description"></view>
+      </view>
+      
+      <view class="categories-grid">
+        <block wx:for="{{categories}}" wx:key="id">
+          <view class="category-card" bindtap="navigateToCategory" data-category="{{item.code}}">
+            <view class="category-image-container">
+              <image src="{{item.image}}" class="category-image" mode="aspectFill" lazy-load="true" />
+              <view class="category-overlay"></view>
+              <view class="category-info">
+                <view class="category-title">{{item.name}}</view>
+                <view class="category-count">{{item.productCount}} 款产品</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门产品 -->
+  <view class="products-section">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">热门产品</view>
+        <view class="section-description">精选我们最受欢迎的高品质玩偶，为您的家居生活增添舒适与美感</view>
+      </view>
+      
+      <view class="products-grid">
+        <block wx:for="{{hotProducts}}" wx:key="id">
+          <view class="product-card" bindtap="navigateToProduct" data-id="{{item.id}}">
+            <view class="product-image-container">
+              <image src="{{item.image}}" class="product-image" mode="aspectFill" lazy-load="true" />
+              <!-- <view class="product-actions">
+                <view class="action-button" catchtap="toggleFavorite" data-id="{{item.id}}">
+                  <text class="{{item.isFavorite ? 'icon-heart' : 'icon-heart-o'}}"></text>
+                </view>
+                <view class="action-button action-button-eye" catchtap="previewProduct" data-id="{{item.id}}">
+                  <text class="icon-eye"></text>
+                </view>
+              </view> -->
+
+            </view>
+            <view class="product-content">
+              <view class="product-rating">
+                <view class="rating-stars">
+                  <block wx:for="{{5}}" wx:key="*this" wx:for-item="star">
+                    <text class="{{star < item.rating ? 'icon-star' : (star === Math.floor(item.rating) && item.rating % 1 !== 0 ? 'icon-star-half-o' : 'icon-star-o')}}"></text>
+                  </block>
+                </view>
+                <text class="rating-count">({{item.ratingCount}})</text>
+              </view>
+              <view class="product-title">{{item.name}}</view>
+              <view class="product-description">{{item.description}}</view>
+              <view class="product-footer">
+                <view class="product-price">
+                  <text class="current-price">¥{{item.currentPrice}}</text>
+                  <text class="original-price" wx:if="{{item.originalPrice && item.originalPrice > item.currentPrice}}">¥{{item.originalPrice}}</text>
+                </view>
+                <view class="add-to-cart-button {{addingToCart ? 'loading' : ''}}" catchtap="addToCart" data-id="{{item.id}}">
+                  <image class="cart-icon" src="/img/icons/cart.png" mode="aspectFit" wx:if="{{!addingToCart}}"></image>
+                  <text wx:if="{{addingToCart}}">添加中...</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      
+      <!-- 分页控制 -->
+      <view class="pagination-container">
+        <view class="pagination-info">
+          第 {{hotProductsPage}} 页 / 共 {{hotProductsTotal}} 页
+        </view>
+        <view class="pagination-buttons">
+          <button 
+            class="pagination-btn {{hotProductsPage <= 1 ? 'disabled' : ''}}" 
+            bindtap="onPrevPage" 
+            disabled="{{hotProductsPage <= 1 || hotProductsLoading}}"
+          >
+            上一页
+          </button>
+          <button 
+            class="pagination-btn {{!hotProductsHasNext ? 'disabled' : ''}}" 
+            bindtap="onNextPage" 
+            disabled="{{!hotProductsHasNext || hotProductsLoading}}"
+          >
+            下一页
+          </button>
+        </view>
+      </view>
+      
+      <view class="text-center">
+        <view class="view-all-button" bindtap="navigateToProducts">
+          查看全部产品
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+</scroll-view>

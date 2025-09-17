@@ -1,0 +1,7 @@
+{
+  "desc": "现代家居小程序的sitemap文件",
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+} 

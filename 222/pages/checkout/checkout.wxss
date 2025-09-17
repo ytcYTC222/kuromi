@@ -1,0 +1,1038 @@
+/* 结算页面样式 - 库洛米主题 */
+.page-container {
+  background: var(--kuromi-gradient-bg);
+  min-height: 100vh;
+  padding-bottom: var(--spacing-30);
+  position: relative;
+}
+
+.page-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--kuromi-gradient-overlay);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.page-container::after {
+  content: '💳💜';
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  font-size: var(--text-base);
+  opacity: 0.8;
+  animation: float 2.8s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* 通用section样式 */
+.address-section,
+.goods-section,
+.coupon-section,
+.delivery-section,
+.payment-section,
+.remark-section,
+.cost-section {
+  background: var(--color-white);
+  margin-bottom: var(--spacing-5);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1rpx solid var(--color-gray-100);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-all);
+}
+
+.address-section::before,
+.goods-section::before,
+.coupon-section::before,
+.delivery-section::before,
+.payment-section::before,
+.remark-section::before,
+.cost-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2rpx;
+  background: var(--kuromi-gradient-primary);
+  transition: var(--transition-all);
+  z-index: 1;
+}
+
+.address-section:hover::before,
+.goods-section:hover::before,
+.coupon-section:hover::before,
+.delivery-section:hover::before,
+.payment-section:hover::before,
+.remark-section:hover::before,
+.cost-section:hover::before {
+  left: 0;
+}
+
+/* 收货地址 */
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2) 0;
+  position: relative;
+  z-index: 2;
+}
+
+.address-icon {
+  font-size: var(--text-xl);
+  margin-right: var(--spacing-5);
+  color: var(--color-primary);
+  transition: var(--transition-all);
+}
+
+.address-content {
+  flex: 1;
+}
+
+.address-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.receiver-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+  margin-right: var(--spacing-5);
+}
+
+.receiver-phone {
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+}
+
+.address-detail {
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+  line-height: 1.4;
+}
+
+.no-address {
+  padding: var(--spacing-5) 0;
+  text-align: center;
+}
+
+.no-address-text {
+  font-size: var(--text-lg);
+  color: var(--color-gray-500);
+}
+
+.arrow-right {
+  font-size: var(--text-lg);
+  color: var(--color-gray-400);
+  margin-left: var(--spacing-5);
+  transition: var(--transition-all);
+}
+
+.section-header:hover .arrow-right {
+  color: var(--color-primary);
+  transform: translateX(var(--spacing-1));
+}
+
+/* 商品列表 */
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-5);
+  border-bottom: 1rpx solid var(--color-gray-200);
+  position: relative;
+  z-index: 2;
+}
+
+.store-icon {
+  font-size: var(--text-lg);
+  margin-right: var(--spacing-4);
+  color: var(--color-primary);
+}
+
+.store-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+.goods-list {
+  position: relative;
+  z-index: 2;
+}
+
+.goods-item {
+  display: flex;
+  margin-bottom: var(--spacing-8);
+  padding: var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.goods-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-gray-50);
+  opacity: 0;
+  transition: var(--transition-all);
+  z-index: -1;
+}
+
+.goods-item:hover::before {
+  opacity: 1;
+}
+
+.goods-item:last-child {
+  margin-bottom: 0;
+}
+
+.goods-image {
+  width: var(--spacing-30);
+  height: var(--spacing-30);
+  border-radius: var(--border-radius-md);
+  margin-right: var(--spacing-5);
+  background-color: var(--color-gray-100);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.goods-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: var(--transition-all);
+}
+
+.goods-item:hover .goods-image::after {
+  transform: translateX(100%);
+}
+
+.goods-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.goods-title {
+  font-size: var(--text-base);
+  color: var(--color-gray-900);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-2);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-weight: var(--font-medium);
+}
+
+.goods-attributes {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-2);
+  background: var(--color-gray-100);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  width: fit-content;
+}
+
+.goods-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goods-price {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-red-500);
+}
+
+.goods-quantity {
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+  background: var(--color-gray-100);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+}
+
+/* 优惠券、配送、支付方式 */
+.coupon-header,
+.delivery-header,
+.payment-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  transition: var(--transition-all);
+}
+
+.coupon-icon,
+.delivery-icon,
+.payment-icon {
+  font-size: var(--text-xl);
+  margin-right: var(--spacing-5);
+  color: var(--color-primary);
+  transition: var(--transition-all);
+}
+
+.coupon-header:hover .coupon-icon,
+.delivery-header:hover .delivery-icon,
+.payment-header:hover .payment-icon {
+  transform: scale(1.1);
+}
+
+.coupon-content,
+.delivery-content,
+.payment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.coupon-title,
+.delivery-title,
+.payment-title {
+  font-size: var(--text-lg);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-2);
+  font-weight: var(--font-medium);
+}
+
+.coupon-desc,
+.delivery-desc,
+.payment-desc {
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+}
+
+.coupon-discount {
+  margin-right: var(--spacing-5);
+  background: var(--color-red-50);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  border: 1rpx solid var(--color-red-200);
+}
+
+.discount-amount {
+  font-size: var(--text-base);
+  color: var(--color-red-500);
+  font-weight: var(--font-semibold);
+}
+
+.delivery-fee,
+.payment-status {
+  margin-right: var(--spacing-5);
+  background: var(--color-gray-50);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  border: 1rpx solid var(--color-gray-200);
+}
+
+.fee-amount {
+  font-size: var(--text-base);
+  color: var(--color-gray-900);
+  font-weight: var(--font-medium);
+}
+
+.fee-free {
+  font-size: var(--text-base);
+  color: var(--color-green-500);
+  font-weight: var(--font-medium);
+}
+
+.status-text {
+  font-size: var(--text-sm);
+  color: var(--color-green-500);
+  font-weight: var(--font-medium);
+}
+
+/* 订单备注 */
+.remark-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-5);
+  position: relative;
+  z-index: 2;
+}
+
+.remark-icon {
+  font-size: var(--text-xl);
+  margin-right: var(--spacing-5);
+  color: var(--color-primary);
+  transition: var(--transition-all);
+}
+
+.remark-title {
+  font-size: var(--text-lg);
+  color: var(--color-gray-900);
+  font-weight: var(--font-medium);
+}
+
+.remark-input {
+  width: 100%;
+  min-height: var(--spacing-30);
+  padding: var(--spacing-5);
+  border: 1rpx solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
+  font-size: var(--text-base);
+  color: var(--color-gray-900);
+  background-color: var(--color-gray-50);
+  box-sizing: border-box;
+  transition: var(--transition-all);
+  resize: vertical;
+}
+
+.remark-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 3rpx rgba(22, 93, 255, 0.1);
+  outline: none;
+}
+
+.remark-input::placeholder {
+  color: var(--color-gray-400);
+}
+
+/* 费用明细 */
+.cost-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-5);
+  padding: var(--spacing-3) 0;
+  border-bottom: 1rpx solid var(--color-gray-100);
+  transition: var(--transition-all);
+  position: relative;
+  z-index: 2;
+}
+
+.cost-item:last-child {
+  margin-bottom: 0;
+  border-bottom: 2rpx solid var(--color-primary);
+  padding: var(--spacing-4) 0;
+  font-weight: var(--font-semibold);
+}
+
+.cost-item:hover {
+  background: var(--color-gray-50);
+  margin: 0 calc(-1 * var(--spacing-4));
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--border-radius-sm);
+}
+
+.cost-label {
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+}
+
+.cost-item:last-child .cost-label {
+  color: var(--color-gray-900);
+  font-weight: var(--font-semibold);
+}
+
+.cost-value {
+  font-size: var(--text-base);
+  color: var(--color-gray-900);
+  font-weight: var(--font-medium);
+}
+
+.cost-value.discount {
+  color: var(--color-red-500);
+  font-weight: var(--font-semibold);
+}
+
+.cost-value.free {
+  color: var(--color-green-500);
+  font-weight: var(--font-semibold);
+}
+
+.cost-item:last-child .cost-value {
+  color: var(--color-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+}
+
+/* 底部结算栏 */
+.checkout-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  padding: var(--spacing-8);
+  border-top: 1rpx solid var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  backdrop-filter: blur(10rpx);
+  box-shadow: var(--shadow-lg);
+}
+
+.checkout-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2rpx;
+  background: var(--kuromi-gradient-primary);
+}
+
+.total-info {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.total-label {
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-1);
+}
+
+.total-amount {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-red-500);
+  text-shadow: 0 1rpx 2rpx rgba(255, 71, 87, 0.2);
+}
+
+.submit-button {
+  background: var(--kuromi-gradient-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-6) var(--spacing-15);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  min-width: var(--spacing-50);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: var(--transition-all);
+}
+
+.submit-button:hover {
+  transform: translateY(-2rpx);
+  box-shadow: var(--shadow-lg);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-button:disabled {
+  background: var(--color-gray-400);
+  color: var(--color-white);
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.submit-button:disabled::before {
+  display: none;
+}
+
+.submit-button::after {
+  border: none;
+}
+
+/* 弹窗样式 */
+.address-modal,
+.coupon-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4rpx);
+}
+
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  border-radius: var(--border-radius-2xl) var(--border-radius-2xl) 0 0;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-10) var(--spacing-8) var(--spacing-5);
+  border-bottom: 1rpx solid var(--color-gray-200);
+  background: var(--color-gray-50);
+  position: relative;
+}
+
+.modal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--spacing-12);
+  height: 2rpx;
+  background: var(--kuromi-gradient-primary);
+}
+
+.modal-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+.modal-close {
+  font-size: var(--text-2xl);
+  color: var(--color-gray-400);
+  padding: var(--spacing-2);
+  border-radius: var(--border-radius-full);
+  transition: var(--transition-all);
+}
+
+.modal-close:hover {
+  color: var(--color-gray-600);
+  background: var(--color-gray-100);
+  transform: scale(1.1);
+}
+
+/* 地址列表 */
+.address-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: var(--spacing-2);
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-8);
+  border-bottom: 1rpx solid var(--color-gray-100);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--spacing-2);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.address-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3rpx;
+  background: var(--color-gray-300);
+  transition: var(--transition-all);
+}
+
+.address-item.selected {
+  background: var(--color-blue-50);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.address-item.selected::before {
+  background: var(--color-primary);
+}
+
+.address-item:hover {
+  background: var(--color-gray-50);
+  transform: translateX(var(--spacing-1));
+}
+
+.address-item-content {
+  flex: 1;
+}
+
+.address-item-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.item-receiver {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+  margin-right: var(--spacing-5);
+}
+
+.item-phone {
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+  margin-right: var(--spacing-5);
+  background: var(--color-gray-100);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+}
+
+.default-tag {
+  background: var(--color-red-500);
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--border-radius-full);
+  font-weight: var(--font-medium);
+}
+
+.item-address {
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+  line-height: 1.4;
+}
+
+.address-item-check {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-left: var(--spacing-5);
+  transition: var(--transition-all);
+}
+
+.address-item.selected .address-item-check {
+  transform: scale(1.2);
+}
+
+.add-address-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-10);
+  border-top: 1rpx solid var(--color-gray-200);
+  color: var(--color-primary);
+  background: var(--color-gray-50);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.add-address-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(22, 93, 255, 0.1), transparent);
+  transition: var(--transition-all);
+}
+
+.add-address-btn:hover {
+  background: var(--color-blue-50);
+}
+
+.add-address-btn:hover::before {
+  left: 100%;
+}
+
+.add-icon {
+  font-size: var(--text-lg);
+  margin-right: var(--spacing-4);
+}
+
+.add-text {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+}
+
+/* 优惠券列表 */
+.coupon-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: var(--spacing-2);
+}
+
+.coupon-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-8);
+  border-bottom: 1rpx solid var(--color-gray-100);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--spacing-2);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.coupon-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3rpx;
+  background: var(--color-gray-300);
+  transition: var(--transition-all);
+}
+
+.coupon-item.selected {
+  background: var(--color-red-50);
+  border-color: var(--color-red-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.coupon-item.selected::before {
+  background: var(--color-red-500);
+}
+
+.coupon-item:hover {
+  background: var(--color-gray-50);
+  transform: translateX(var(--spacing-1));
+}
+
+.coupon-item.no-coupon {
+  justify-content: center;
+  background: var(--color-gray-50);
+  border: 2rpx dashed var(--color-gray-300);
+}
+
+.coupon-item-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.coupon-item-info {
+  flex: 1;
+}
+
+.coupon-item-title {
+  font-size: var(--text-lg);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-2);
+  display: block;
+  font-weight: var(--font-medium);
+}
+
+.coupon-item-desc {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  background: var(--color-gray-100);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  width: fit-content;
+}
+
+.coupon-item-value {
+  margin-left: var(--spacing-5);
+  background: var(--color-red-50);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-md);
+  border: 1rpx solid var(--color-red-200);
+}
+
+.coupon-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-red-500);
+}
+
+.coupon-item-check {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-left: var(--spacing-5);
+  transition: var(--transition-all);
+}
+
+.coupon-item.selected .coupon-item-check {
+  transform: scale(1.2);
+  color: var(--color-red-500);
+}
+
+/* 加载遮罩 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loading-content {
+  background: var(--color-white);
+  padding: var(--spacing-15);
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-2xl);
+  border: 1rpx solid var(--color-gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rpx;
+  background: var(--kuromi-gradient-primary);
+}
+
+.loading-spinner {
+  width: var(--spacing-15);
+  height: var(--spacing-15);
+  border: 3rpx solid var(--color-gray-200);
+  border-top: 3rpx solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-5);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+  font-weight: var(--font-medium);
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  .page-container {
+    padding-bottom: var(--spacing-25);
+  }
+  
+  .checkout-footer {
+    padding: var(--spacing-5);
+  }
+  
+  .submit-button {
+    padding: var(--spacing-5) var(--spacing-10);
+    font-size: var(--text-base);
+    min-width: var(--spacing-40);
+  }
+  
+  .address-section,
+  .goods-section,
+  .coupon-section,
+  .delivery-section,
+  .payment-section,
+  .remark-section,
+  .cost-section {
+    padding: var(--spacing-6);
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .goods-image {
+    width: var(--spacing-20);
+    height: var(--spacing-20);
+  }
+  
+  .modal-content {
+    max-height: 90vh;
+  }
+}
+
+/* 动画效果 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+
+/* 图标通用样式 */
+.icon {
+  transition: var(--transition-all);
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
